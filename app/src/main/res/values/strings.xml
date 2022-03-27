@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Sound Pressure Level Meter</string>
+
+    <string name="button_spl_graph_name">SPL Graph</string>
+    <string name="button_spl_meter_name">SPL Meter</string>
+    <string name="button_raw_data_graph_name">Raw Data</string>
+    <string name="button_calibration_name">Calibration</string>
+
+    <string name="app_bar_menu_screenshots">Screenshots</string>
+    <string name="app_bar_menu_settings">Settings</string>
+    <string name="app_bar_menu_help">Help</string>
+</resources>
