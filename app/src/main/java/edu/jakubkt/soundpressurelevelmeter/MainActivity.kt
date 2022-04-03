@@ -1,5 +1,6 @@
 package edu.jakubkt.soundpressurelevelmeter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -15,11 +16,22 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        setOnClickListeners()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.app_bar_menu, menu)
         return true
+    }
+
+    private fun setOnClickListeners() {
+        binding.mainMenuLayout.buttonSplGraph.setOnClickListener {
+            Intent(this, SPLGraphActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        //TODO do the same for all buttons in the main menu layout
     }
 }

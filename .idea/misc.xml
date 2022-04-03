@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1965" />
+        <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1965" />
+        <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/layout/activity_calibration.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/layout/activity_raw_data.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/layout/activity_splgraph.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/layout/activity_splmeter.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/layout/main_menu_layout.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/menu/app_bar_menu.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/jakubkt/AndroidStudioProjects/SoundPressureLevelMeter/app/src/main/res/menu/splgraph_menu.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

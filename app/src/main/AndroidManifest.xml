@@ -9,6 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SoundPressureLevelMeter">
+        <!--CalibrationActivity's orientation should be set to "landscape" at all times of possible-->
+        <activity
+            android:name=".CalibrationActivity"
+            android:exported="false" />
+        <!--RawDataActivity's orientation should be set to "landscape" at all times of possible-->
+        <activity
+            android:name=".RawDataActivity"
+            android:exported="false" />
+        <!--SPLMeterActivity's orientation should be set to "landscape" at all times of possible-->
+        <activity
+            android:name=".SPLMeterActivity"
+            android:exported="false" />
+        <!--SPLGraphActivity's orientation should be set to "landscape" at all times of possible-->
+        <activity
+            android:name=".SPLGraphActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

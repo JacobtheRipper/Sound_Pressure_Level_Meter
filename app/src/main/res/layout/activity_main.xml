@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -21,6 +22,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
+        android:id="@+id/main_menu_layout"
         layout="@layout/main_menu_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
