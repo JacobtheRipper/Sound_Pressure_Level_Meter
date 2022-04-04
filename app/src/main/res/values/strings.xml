@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Sound Pressure Level Meter</string>
+    <string name="placeholder_string">Work in progress</string>
 
     <string name="button_spl_graph_name">SPL Graph</string>
     <string name="button_spl_meter_name">SPL Meter</string>
@@ -11,5 +12,5 @@
     <string name="app_bar_menu_help">Help</string>
 
     <string name="action_return_to_main_menu">Back</string>
-    <string name="action_view_screenshots">Screenshots</string>
+    <string name="action_take_screenshot">Take screenshot</string>
 </resources>

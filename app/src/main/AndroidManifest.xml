@@ -12,21 +12,27 @@
         <!--CalibrationActivity's orientation should be set to "landscape" at all times of possible-->
         <activity
             android:name=".CalibrationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <!--RawDataActivity's orientation should be set to "landscape" at all times of possible-->
         <activity
             android:name=".RawDataActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <!--SPLMeterActivity's orientation should be set to "landscape" at all times of possible-->
         <activity
             android:name=".SPLMeterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <!--SPLGraphActivity's orientation should be set to "landscape" at all times of possible-->
         <activity
             android:name=".SPLGraphActivity"
             android:exported="false"
             android:screenOrientation="landscape"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

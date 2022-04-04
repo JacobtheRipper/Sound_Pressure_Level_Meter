@@ -27,11 +27,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListeners() {
+        // Switch to a different activity after pressing a button
         binding.mainMenuLayout.buttonSplGraph.setOnClickListener {
             Intent(this, SPLGraphActivity::class.java).also {
                 startActivity(it)
             }
         }
-        //TODO do the same for all buttons in the main menu layout
+
+        binding.mainMenuLayout.buttonSplMeter.setOnClickListener {
+            Intent(this, SPLMeterActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        binding.mainMenuLayout.buttonRawDataGraph.setOnClickListener {
+            Intent(this, RawDataActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+        //TODO do the same for the Calibration button in the main menu layout
     }
 }

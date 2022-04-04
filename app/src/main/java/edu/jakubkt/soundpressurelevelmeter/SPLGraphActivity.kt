@@ -18,14 +18,10 @@ class SPLGraphActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.SPLGraphToolbar)
     }
-    /*
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        return false
-    }
-    */
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.splgraph_menu, menu)
+        inflater.inflate(R.menu.measurement_menu, menu)
         return true
     }
 
@@ -35,8 +31,8 @@ class SPLGraphActivity : AppCompatActivity() {
                 finish()
                 return true
             }
-            R.id.action_view_screenshots -> {
-                Toast.makeText(applicationContext, "Work in progress", Toast.LENGTH_SHORT).show()
+            R.id.action_take_screenshot -> {
+                Toast.makeText(applicationContext, R.string.placeholder_string, Toast.LENGTH_SHORT).show()
                 return true
             }
         }
