@@ -9,27 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SoundPressureLevelMeter">
-        <!--CalibrationActivity's orientation should be set to "landscape" at all times of possible-->
+        <!--CalibrationActivity's orientation should be set to "landscape" at all times if possible-->
         <activity
             android:name=".CalibrationActivity"
+            android:label="@string/button_calibration_name"
             android:exported="false"
             android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <!--RawDataActivity's orientation should be set to "landscape" at all times of possible-->
+        <!--RawDataActivity's orientation should be set to "landscape" at all times if possible-->
         <activity
             android:name=".RawDataActivity"
+            android:label="@string/button_raw_data_graph_name"
             android:exported="false"
             android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <!--SPLMeterActivity's orientation should be set to "landscape" at all times of possible-->
+        <!--SPLMeterActivity's orientation should be set to "landscape" at all times if possible-->
         <activity
             android:name=".SPLMeterActivity"
+            android:label="@string/button_spl_meter_name"
             android:exported="false"
             android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <!--SPLGraphActivity's orientation should be set to "landscape" at all times of possible-->
+        <!--SPLGraphActivity's orientation should be set to "landscape" at all times if possible-->
         <activity
             android:name=".SPLGraphActivity"
+            android:label="@string/button_spl_graph_name"
             android:exported="false"
             android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|orientation|screenSize" />
