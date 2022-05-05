@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +28,26 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_access_screenshots -> {
+                Toast.makeText(applicationContext, R.string.placeholder_string, Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.action_access_settings_activity -> {
+                Intent(this, SettingsActivity::class.java).also {
+                    startActivity(it)
+                }
+                return true
+            }
+            R.id.action_access_help_activity -> {
+                Toast.makeText(applicationContext, R.string.placeholder_string, Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun setOnClickListeners() {
         // Switch to a different activity after pressing a button
         binding.mainMenuLayout.buttonSplGraph.setOnClickListener {
@@ -45,6 +67,9 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
-        //TODO do the same for the Calibration button in the main menu layout
+        //TODO create a CalibrationActivity layout
+        binding.mainMenuLayout.buttonCalibration.setOnClickListener {
+            Toast.makeText(applicationContext, R.string.placeholder_string, Toast.LENGTH_SHORT).show()
+        }
     }
 }

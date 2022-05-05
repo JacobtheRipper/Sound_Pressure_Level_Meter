@@ -1,21 +1,36 @@
 <resources>
+    <!-- Main Application Titles -->
     <string name="app_name">Sound Pressure Level Meter</string>
     <string name="placeholder_string">Work in progress</string>
 
+    <!-- Main Menu Buttons -->
     <string name="button_spl_graph_name">SPL Graph</string>
     <string name="button_spl_meter_name">SPL Meter</string>
     <string name="button_raw_data_graph_name">Raw Data</string>
     <string name="button_calibration_name">Calibration</string>
 
+    <!-- App Bar Menu Items -->
     <string name="app_bar_menu_screenshots">Screenshots</string>
     <string name="app_bar_menu_settings">Settings</string>
     <string name="app_bar_menu_help">Help</string>
 
+    <!-- SPL Meter Activity Layout Items -->
     <string name="drawable_linst_field_description">Linst [dB]</string>
     <string name="drawable_leq_field_description">Leq [dB]</string>
     <string name="drawable_lmin_field_description">Lmin [dB]</string>
     <string name="drawable_lmax_field_description">Lmax [dB]</string>
 
+    <!-- Measurement Menu Items -->
     <string name="action_return_to_main_menu">Back</string>
     <string name="action_take_screenshot">Take screenshot</string>
+
+    <!-- Settings Activity Titles -->
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="meas_settings_header">Measurement settings</string>
+
+    <!-- Measurement Settings Preferences -->
+    <string name="window_title">Window Function</string>
+    <string name="weightings_title">Measurement Weightings</string>
 </resources>

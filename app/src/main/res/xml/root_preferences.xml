@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/meas_settings_header">
+
+        <ListPreference
+            app:defaultValue="hann"
+            app:entries="@array/window_entries"
+            app:entryValues="@array/window_values"
+            app:key="window"
+            app:title="@string/window_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="a"
+            app:entries="@array/weightings_entries"
+            app:entryValues="@array/weightings_values"
+            app:key="weightings"
+            app:title="@string/weightings_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

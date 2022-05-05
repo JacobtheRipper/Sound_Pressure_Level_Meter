@@ -1,0 +1,26 @@
+<resources>
+    <!-- Measurement Settings Preference -->
+    <string-array name="window_entries">
+        <item>Hann</item>
+        <item>Hamming</item>
+        <item>Flat Top</item>
+    </string-array>
+
+    <string-array name="window_values">
+        <item>hann</item>
+        <item>hamming</item>
+        <item>flat_top</item>
+    </string-array>
+
+    <string-array name="weightings_entries">
+        <item>Z (none)</item>
+        <item>A</item>
+        <item>C</item>
+    </string-array>
+
+    <string-array name="weightings_values">
+        <item>z</item>
+        <item>a</item>
+        <item>c</item>
+    </string-array>
+</resources>
