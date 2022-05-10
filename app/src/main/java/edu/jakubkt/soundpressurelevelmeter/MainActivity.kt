@@ -10,6 +10,11 @@ import android.widget.Toast
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    companion object AppConstants {
+        // requestCode for permissions
+        const val REQUEST_CODE_MICROPHONE: Int = 1
+    }
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

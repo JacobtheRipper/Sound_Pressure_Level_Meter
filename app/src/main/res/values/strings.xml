@@ -33,4 +33,5 @@
     <!-- Measurement Settings Preferences -->
     <string name="window_title">Window Function</string>
     <string name="weightings_title">Measurement Weightings</string>
+
 </resources>
