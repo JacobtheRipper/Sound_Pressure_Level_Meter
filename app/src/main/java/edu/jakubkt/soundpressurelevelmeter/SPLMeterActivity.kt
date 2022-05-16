@@ -12,10 +12,19 @@ import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.REQUEST_COD
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivitySplmeterBinding
 import edu.jakubkt.soundpressurelevelmeter.logic.AudioBufferProcessing
 import edu.jakubkt.soundpressurelevelmeter.logic.MicrophoneRecorder
+import edu.jakubkt.soundpressurelevelmeter.logic.SPLCalculations
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import kotlin.random.Random
 
 class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     private lateinit var binding: ActivitySplmeterBinding
+    private  lateinit var calculation: SPLCalculations
     private lateinit var recorder: MicrophoneRecorder
+
+    // Manage updating UI TextViews on a UI thread
+    @Volatile
+    private var updateUI: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +32,8 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
 
         setContentView(binding.root)
         setSupportActionBar(binding.SPLMeterToolbar)
+
+        calculation = SPLCalculations()
 
         recorder = MicrophoneRecorder(this, applicationContext, this)
         recorder.startRecording()
@@ -50,6 +61,7 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
 
     override fun onDestroy() {
         recorder.stopRecording()
+        updateUI = false
         super.onDestroy()
     }
 
@@ -69,6 +81,28 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     }
 
     override fun processAudioBuffer(audioBuffer: ShortArray?) {
-        //TODO("Not yet implemented")
+        //TODO calculate desired parameters and update UI
+        if(updateUI) {
+            updateUI = false
+            //TODO remove random number generating placeholder code
+            val linstFieldValue: Float = Random.nextFloat()*120
+            val leqFieldValue: Float = Random.nextFloat()*120
+            val lmaxFieldValue: Float = Random.nextFloat()*120
+            val lminFieldValue: Float = Random.nextFloat()*120
+
+            //val linstFieldValue = calculation.calculateLinst(audioBuffer)
+
+            runOnUiThread {
+                // Rounding floating-point number to 1 decimal place
+                val df = DecimalFormat("#.#")
+                df.roundingMode = RoundingMode.HALF_UP
+
+                binding.textViewLinstFieldValue.text = df.format(linstFieldValue)
+                binding.textViewLeqFieldValue.text = df.format(leqFieldValue)
+                binding.textViewLmaxFieldValue.text = df.format(lmaxFieldValue)
+                binding.textViewLminFieldValue.text = df.format(lminFieldValue)
+                updateUI = true
+            }
+        }
     }
 }

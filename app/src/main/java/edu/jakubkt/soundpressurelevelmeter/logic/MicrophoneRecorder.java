@@ -36,12 +36,6 @@ public class MicrophoneRecorder implements Runnable {
 
         // Grant user permission to use a microphone
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            // TODO handle user permission
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_MICROPHONE);
         }
         audioRecord = new AudioRecord(AUDIO_SOURCE, SAMPLE_RATE, CHANNEL_CONFIG, AUDIO_FORMAT, BUFFER_SIZE_RECORDING);
@@ -79,7 +73,7 @@ public class MicrophoneRecorder implements Runnable {
 
     @Override
     public void run() {
-        // TODO implement run() method
+        // TODO modify audioBuffer for desired time weighting
         // buffer containing 100 milliseconds of audio data
         short[] audioBuffer = new short[SAMPLE_RATE/10];
         int numberOfSamples;

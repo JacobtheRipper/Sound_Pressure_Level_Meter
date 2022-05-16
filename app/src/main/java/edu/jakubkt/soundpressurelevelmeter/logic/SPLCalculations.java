@@ -1,19 +1,19 @@
 package edu.jakubkt.soundpressurelevelmeter.logic;
 
 public class SPLCalculations {
-    public int[] calculateLinst(int[] buffer) {
+    public short[] calculateLinst(short[] buffer) {
             return buffer;
     }
 
-    public int[] calculateLeq(int[] buffer) {
+    public short[] calculateLeq(short[] buffer) {
         return buffer;
     }
 
-    public int[] calculateLmax(int[] buffer) {
+    public short[] calculateLmax(short[] buffer) {
         return buffer;
     }
 
-    public int[] calculateLmin(int[] buffer) {
+    public short[] calculateLmin(short[] buffer) {
         return buffer;
     }
 

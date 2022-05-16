@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object AppConstants {
         // requestCode for permissions
+        // TODO move constants to a different file
         const val REQUEST_CODE_MICROPHONE: Int = 1
     }
     private lateinit var binding: ActivityMainBinding
