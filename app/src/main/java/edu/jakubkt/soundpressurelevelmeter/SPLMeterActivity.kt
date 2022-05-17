@@ -85,10 +85,10 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
         if(updateUI) {
             updateUI = false
             //TODO remove random number generating placeholder code
-            val linstFieldValue: Float = Random.nextFloat()*120
-            val leqFieldValue: Float = Random.nextFloat()*120
-            val lmaxFieldValue: Float = Random.nextFloat()*120
-            val lminFieldValue: Float = Random.nextFloat()*120
+            val linstFieldValue: Double = Random.nextDouble()*120
+            val leqFieldValue: Double = Random.nextDouble()*120
+            val lmaxFieldValue: Double = Random.nextDouble()*120
+            val lminFieldValue: Double = Random.nextDouble()*120
 
             //val linstFieldValue = calculation.calculateLinst(audioBuffer)
 
