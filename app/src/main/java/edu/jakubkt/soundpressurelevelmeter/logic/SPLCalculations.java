@@ -9,10 +9,13 @@ import static java.lang.Math.pow;
 import static edu.jakubkt.soundpressurelevelmeter.MainActivity.AUDIO_BUFFER_SIZE;
 
 import androidx.annotation.NonNull;
+import android.util.Log;
 
 import org.jtransforms.fft.DoubleFFT_1D;
 
 public class SPLCalculations {
+
+    private static final String TAG = "SPLCalculations";
 
     private final double[] signalBuffer = new double[AUDIO_BUFFER_SIZE];
     private final double[] fftBuffer = new double[2*AUDIO_BUFFER_SIZE]; // contains both real and imaginary part according JTransforms JavaDoc
@@ -20,25 +23,41 @@ public class SPLCalculations {
 
     private final DoubleFFT_1D fft_1D = new DoubleFFT_1D(AUDIO_BUFFER_SIZE);
 
-    public short[] calculateLinst(short[] buffer) {
-            return buffer;
+    private double lMax;
+    private double lMin;
+
+    public double calculateLinst(int windowFunction, int weightingType, short[] buffer) {
+        applyWindowFunction(windowFunction, buffer);
+        weightingType = 0; // used for later
+        calculateFFTAmplitude(signalBuffer);
+        double outputLinst = calculateSignalEnergy(fftAmplitudeBuffer);
+        outputLinst = convertEnergyToDB(outputLinst);
+
+        // Set lMax and lMin values, check for default boolean value
+        if (lMax == 0.0d || lMin == 0.0d) {
+            lMax = outputLinst;
+            lMin = outputLinst;
+        }
+        if (lMax < outputLinst) lMax = outputLinst;
+        if (lMin > outputLinst) lMin = outputLinst;
+
+        return outputLinst;
     }
 
     public short[] calculateLeq(short[] buffer) {
         return buffer;
     }
 
-    public short[] calculateLmax(short[] buffer) {
-        return buffer;
+    public double calculateLmax() {
+        return lMax;
     }
 
-    public short[] calculateLmin(short[] buffer) {
-        return buffer;
+    public double calculateLmin() {
+        return lMin;
     }
 
-    @NonNull
-    private double[] applyWindowFunction(int windowFunction, @NonNull short[] buffer) {
-        double[] outputSignal = signalBuffer;
+    private void applyWindowFunction(int windowFunction, @NonNull short[] buffer) {
+        double[] windowedSignal = signalBuffer;
         int bufferLength = buffer.length;
 
         // Hamming Window coefficients
@@ -52,24 +71,26 @@ public class SPLCalculations {
         double flatTopA3 = 0.083578947;
         double flatTopA4 = 0.006947368;
 
-        //TODO Hann, Hamming or FlatTop
         switch (windowFunction) {
             // Hann Window
             case 0:
+                Log.d(TAG, "Applied Hann Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double hannEquation = 0.5 * (1 - cos(2*PI*i / (bufferLength - 1)));
-                    outputSignal[i] = buffer[i] * hannEquation;
+                    windowedSignal[i] = buffer[i] * hannEquation;
                 }
                 break;
             // Hamming Window
             case 1:
+                Log.d(TAG, "Applied Hamming Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double hammingEquation = hammingA0 - hammingA1 * cos(2*PI*i / (bufferLength - 1));
-                    outputSignal[i] = buffer[i] * hammingEquation;
+                    windowedSignal[i] = buffer[i] * hammingEquation;
                 }
                 break;
             // FlatTop Window
             case 2:
+                Log.d(TAG, "Applied FlatTop Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double cosine1 = flatTopA1 * cos(2*PI*i / (bufferLength - 1));
                     double cosine2 = flatTopA2 * cos(4*PI*i / (bufferLength - 1));
@@ -77,21 +98,21 @@ public class SPLCalculations {
                     double cosine4 = flatTopA4 * cos(8*PI*i / (bufferLength - 1));
 
                     double flatTopEquation = flatTopA0 - cosine1 + cosine2 - cosine3 + cosine4;
-                    outputSignal[i] = buffer[i] * flatTopEquation;
+                    windowedSignal[i] = buffer[i] * flatTopEquation;
                 }
                 break;
-            // Else return outputSignal by casting buffer to double (Rectangular Window)
+            // Else if condition failed use Hann Window or return outputSignal by casting buffer to double (Rectangular Window)
             default:
+                Log.d(TAG, "Error occured. Applied Hann Window");
                 for (int i = 0; i < bufferLength; i++) {
-                    outputSignal[i] = buffer[i];
+                    double hannEquation = 0.5 * (1 - cos(2*PI*i / (bufferLength - 1)));
+                    windowedSignal[i] = buffer[i] * hannEquation;
                 }
                 break;
         }
-        return outputSignal;
     }
 
-    private double[] calculateFFTAmplitude(double[] buffer) {
-        // TODO use JTransforms library
+    private void calculateFFTAmplitude(double[] buffer) {
         double[] fftValues = fftBuffer;
         double[] outputFFTAmplitude = fftAmplitudeBuffer;
 
@@ -116,28 +137,26 @@ public class SPLCalculations {
 
             outputFFTAmplitude[i] = fftMagnitude;
         }
-        return outputFFTAmplitude;
     }
 
     private double calculateSignalEnergy(double[] buffer) {
-        // TODO use Parseval Theorem on an FFT amplitude vector
         int bufferLength = buffer.length;
         double totalEnergy = 0;
         for (int i = 0; i < bufferLength; i++) {
             totalEnergy += pow(buffer[i], 2);
         }
-        // For a given Sample Rate total energy is equal to instantaneous signal energy
+        // TODO If the measurement is inaccurate calculate signal's power over observation time
         totalEnergy = totalEnergy/bufferLength;
         return totalEnergy;
+    }
+
+    private double convertEnergyToDB (double energyValue) {
+        return 10 * log10(energyValue);
     }
 
     private short[] splitIntoOctaveBands(int filter, short[] buffer) {
         // TODO split an FFT signal into octave bands with correct center frequency for further signal processing
         return buffer;
-    }
-
-    private double convertEnergyToDB (double energyValue) {
-        return 10 * log10(energyValue);
     }
 
     private short[] applyFrequencyWeightings(int weightingType, short[] buffer) {

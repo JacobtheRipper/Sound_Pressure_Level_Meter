@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         // requestCode for permissions
         const val REQUEST_CODE_MICROPHONE: Int = 1
         const val SAMPLE_RATE: Int = 44100
-        // buffer containing 100 milliseconds of audio data
-        const val AUDIO_BUFFER_SIZE: Int = 4410
+        // buffer containing 125 milliseconds of audio data
+        const val AUDIO_BUFFER_SIZE: Int = 5513
     }
     private lateinit var binding: ActivityMainBinding
 

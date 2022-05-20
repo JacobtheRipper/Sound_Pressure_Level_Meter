@@ -85,12 +85,10 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
         if(updateUI) {
             updateUI = false
             //TODO remove random number generating placeholder code
-            val linstFieldValue: Double = Random.nextDouble()*120
+            val linstFieldValue = calculation.calculateLinst(2, 0, audioBuffer)
             val leqFieldValue: Double = Random.nextDouble()*120
-            val lmaxFieldValue: Double = Random.nextDouble()*120
-            val lminFieldValue: Double = Random.nextDouble()*120
-
-            //val linstFieldValue = calculation.calculateLinst(audioBuffer)
+            val lmaxFieldValue: Double = calculation.calculateLmax()
+            val lminFieldValue: Double = calculation.calculateLmin()
 
             runOnUiThread {
                 // Rounding floating-point number to 1 decimal place

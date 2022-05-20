@@ -19,6 +19,7 @@
     <string name="drawable_leq_field_description">Leq [dB]</string>
     <string name="drawable_lmin_field_description">Lmin [dB]</string>
     <string name="drawable_lmax_field_description">Lmax [dB]</string>
+    <string name="textview_linst_field_placeholder_value">0.0</string>
 
     <!-- Measurement Menu Items -->
     <string name="action_return_to_main_menu">Back</string>

@@ -75,8 +75,7 @@ public class MicrophoneRecorder implements Runnable {
 
     @Override
     public void run() {
-        // TODO modify audioBuffer for desired time weighting
-        // buffer containing 100 milliseconds of audio data
+        // buffer containing 125 milliseconds of audio data
         short[] audioBuffer = new short[AUDIO_BUFFER_SIZE];
         int numberOfSamples;
         try {
