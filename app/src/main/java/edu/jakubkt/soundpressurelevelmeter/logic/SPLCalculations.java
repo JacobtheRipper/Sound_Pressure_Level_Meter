@@ -18,34 +18,40 @@ public class SPLCalculations {
     private static final String TAG = "SPLCalculations";
 
     private final double[] signalBuffer = new double[AUDIO_BUFFER_SIZE];
-    private final double[] fftBuffer = new double[2*AUDIO_BUFFER_SIZE]; // contains both real and imaginary part according JTransforms JavaDoc
+    private final double[] fftBuffer = new double[2*AUDIO_BUFFER_SIZE]; // contains both real and imaginary part according to JTransforms JavaDoc
     private final double[] fftAmplitudeBuffer = new double[AUDIO_BUFFER_SIZE/2]; // FFT amplitudes for frequencies below Nyquist frequency
 
     private final DoubleFFT_1D fft_1D = new DoubleFFT_1D(AUDIO_BUFFER_SIZE);
 
-    private double lMax;
-    private double lMin;
+    private double lMax = 60.0;
+    private double lMin = 60.0;
+    private double totalSoundIntensity = 0.0d;
+    private long numberOfMeasurementsTaken = 0;
 
     public double calculateLinst(int windowFunction, int weightingType, short[] buffer) {
+        numberOfMeasurementsTaken++;
+
+        // Calculate Linst
         applyWindowFunction(windowFunction, buffer);
         weightingType = 0; // used for later
         calculateFFTAmplitude(signalBuffer);
         double outputLinst = calculateSignalEnergy(fftAmplitudeBuffer);
         outputLinst = convertEnergyToDB(outputLinst);
 
-        // Set lMax and lMin values, check for default boolean value
-        if (lMax == 0.0d || lMin == 0.0d) {
-            lMax = outputLinst;
-            lMin = outputLinst;
+        // Set lMax and lMin values, wait 8 measurements cycles until outputLinst value stabilises
+        if (numberOfMeasurementsTaken > 8) {
+            if (lMax < outputLinst) lMax = outputLinst;
+            if (lMin > outputLinst) lMin = outputLinst;
         }
-        if (lMax < outputLinst) lMax = outputLinst;
-        if (lMin > outputLinst) lMin = outputLinst;
+
+        // Increase totalSoundIntensity value for Leq calculation
+        totalSoundIntensity += pow(10, 0.1*outputLinst);
 
         return outputLinst;
     }
 
-    public short[] calculateLeq(short[] buffer) {
-        return buffer;
+    public double calculateLeq() {
+        return convertEnergyToDB(totalSoundIntensity/numberOfMeasurementsTaken);
     }
 
     public double calculateLmax() {
@@ -103,7 +109,7 @@ public class SPLCalculations {
                 break;
             // Else if condition failed use Hann Window or return outputSignal by casting buffer to double (Rectangular Window)
             default:
-                Log.d(TAG, "Error occured. Applied Hann Window");
+                Log.d(TAG, "Error occurred. Applied Hann Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double hannEquation = 0.5 * (1 - cos(2*PI*i / (bufferLength - 1)));
                     windowedSignal[i] = buffer[i] * hannEquation;
@@ -142,6 +148,7 @@ public class SPLCalculations {
     private double calculateSignalEnergy(double[] buffer) {
         int bufferLength = buffer.length;
         double totalEnergy = 0;
+        // Use Parseval's Theorem on a vector with FFT Amplitude to calculate signal's energy
         for (int i = 0; i < bufferLength; i++) {
             totalEnergy += pow(buffer[i], 2);
         }

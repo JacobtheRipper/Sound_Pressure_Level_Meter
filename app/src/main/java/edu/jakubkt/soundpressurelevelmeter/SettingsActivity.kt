@@ -23,7 +23,6 @@ class SettingsActivity : AppCompatActivity() {
                 .commit()
         }
         setSupportActionBar(binding.SettingsToolbar)
-    //supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

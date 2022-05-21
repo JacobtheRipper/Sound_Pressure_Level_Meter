@@ -15,7 +15,6 @@ import edu.jakubkt.soundpressurelevelmeter.logic.MicrophoneRecorder
 import edu.jakubkt.soundpressurelevelmeter.logic.SPLCalculations
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import kotlin.random.Random
 
 class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     private lateinit var binding: ActivitySplmeterBinding
@@ -81,12 +80,10 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     }
 
     override fun processAudioBuffer(audioBuffer: ShortArray?) {
-        //TODO calculate desired parameters and update UI
         if(updateUI) {
             updateUI = false
-            //TODO remove random number generating placeholder code
-            val linstFieldValue = calculation.calculateLinst(2, 0, audioBuffer)
-            val leqFieldValue: Double = Random.nextDouble()*120
+            val linstFieldValue = calculation.calculateLinst(1, 0, audioBuffer)
+            val leqFieldValue: Double = calculation.calculateLeq()
             val lmaxFieldValue: Double = calculation.calculateLmax()
             val lminFieldValue: Double = calculation.calculateLmin()
 
