@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         const val SAMPLE_RATE: Int = 44100
         // buffer containing 125 milliseconds of audio data
         const val AUDIO_BUFFER_SIZE: Int = 5513
+        // for passing settings data between activities
+        const val EXTRA_WINDOW_TYPE: String = "EXTRA_WINDOW_TYPE"
+        const val EXTRA_WEIGHTINGS_TYPE: String = "EXTRA_WEIGHTINGS_TYPE"
     }
     private lateinit var binding: ActivityMainBinding
 
@@ -66,7 +70,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.mainMenuLayout.buttonSplMeter.setOnClickListener {
+            val currentSettings = retrieveSettings()
+            val windowType = currentSettings[0]
+            val weightingsType = currentSettings[1]
             Intent(this, SPLMeterActivity::class.java).also {
+                it.putExtra(EXTRA_WINDOW_TYPE, windowType)
+                it.putExtra(EXTRA_WEIGHTINGS_TYPE, weightingsType)
                 startActivity(it)
             }
         }
@@ -80,5 +89,13 @@ class MainActivity : AppCompatActivity() {
         binding.mainMenuLayout.buttonCalibration.setOnClickListener {
             Toast.makeText(applicationContext, R.string.placeholder_string, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun retrieveSettings(): Array<String?> {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val windowType: String? = preferences.getString("window", "hann")
+        val weightingsType: String? = preferences.getString("weightings", "a")
+
+        return arrayOf(windowType, weightingsType)
     }
 }

@@ -8,11 +8,15 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 
+import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.EXTRA_WEIGHTINGS_TYPE
+import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.EXTRA_WINDOW_TYPE
 import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.REQUEST_CODE_MICROPHONE
+
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivitySplmeterBinding
 import edu.jakubkt.soundpressurelevelmeter.logic.AudioBufferProcessing
 import edu.jakubkt.soundpressurelevelmeter.logic.MicrophoneRecorder
 import edu.jakubkt.soundpressurelevelmeter.logic.SPLCalculations
+
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -20,6 +24,9 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     private lateinit var binding: ActivitySplmeterBinding
     private  lateinit var calculation: SPLCalculations
     private lateinit var recorder: MicrophoneRecorder
+
+    private lateinit var windowType: String
+    private lateinit var weightingsType: String
 
     // Manage updating UI TextViews on a UI thread
     @Volatile
@@ -31,6 +38,9 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
 
         setContentView(binding.root)
         setSupportActionBar(binding.SPLMeterToolbar)
+
+        windowType = intent.getStringExtra(EXTRA_WINDOW_TYPE) ?: "hann"
+        weightingsType = intent.getStringExtra(EXTRA_WEIGHTINGS_TYPE) ?: "a"
 
         calculation = SPLCalculations()
 
@@ -82,7 +92,7 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     override fun processAudioBuffer(audioBuffer: ShortArray?) {
         if(updateUI) {
             updateUI = false
-            val linstFieldValue = calculation.calculateLinst(1, 0, audioBuffer)
+            val linstFieldValue = calculation.calculateLinst(windowType, weightingsType, audioBuffer)
             val leqFieldValue: Double = calculation.calculateLeq()
             val lmaxFieldValue: Double = calculation.calculateLmax()
             val lminFieldValue: Double = calculation.calculateLmin()

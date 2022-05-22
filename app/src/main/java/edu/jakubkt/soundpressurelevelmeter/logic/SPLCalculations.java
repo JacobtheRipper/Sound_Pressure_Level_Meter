@@ -7,6 +7,7 @@ import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;
 
 import static edu.jakubkt.soundpressurelevelmeter.MainActivity.AUDIO_BUFFER_SIZE;
+import static edu.jakubkt.soundpressurelevelmeter.MainActivity.SAMPLE_RATE;
 
 import androidx.annotation.NonNull;
 import android.util.Log;
@@ -20,26 +21,56 @@ public class SPLCalculations {
     private final double[] signalBuffer = new double[AUDIO_BUFFER_SIZE];
     private final double[] fftBuffer = new double[2*AUDIO_BUFFER_SIZE]; // contains both real and imaginary part according to JTransforms JavaDoc
     private final double[] fftAmplitudeBuffer = new double[AUDIO_BUFFER_SIZE/2]; // FFT amplitudes for frequencies below Nyquist frequency
+    private final double[] octaveBandAmplitudeBuffer = new double[AUDIO_BUFFER_SIZE/2];
+
+    private final int[] octaveBandsCenterFrequencies = {125, 250, 500, 1000, 2000, 4000, 8000, 16000};
+    private final double[] aWeightings = {-16.1, -8.6, -3.2, 0, 1.2, 1.0, -1.1, -6.6};
+    private final double[] cWeightings = {-0.2, 0, 0, 0, -0.2, -0.8, -3.0, -8.5};
 
     private final DoubleFFT_1D fft_1D = new DoubleFFT_1D(AUDIO_BUFFER_SIZE);
 
-    private double lMax = 60.0;
-    private double lMin = 60.0;
+    private double lMax;
+    private double lMin;
     private double totalSoundIntensity = 0.0d;
     private long numberOfMeasurementsTaken = 0;
 
-    public double calculateLinst(int windowFunction, int weightingType, short[] buffer) {
+    public double calculateLinst(String windowFunction, String weightingType, short[] buffer) {
         numberOfMeasurementsTaken++;
 
         // Calculate Linst
+        double outputLinst = 0.0;
         applyWindowFunction(windowFunction, buffer);
-        weightingType = 0; // used for later
         calculateFFTAmplitude(signalBuffer);
-        double outputLinst = calculateSignalEnergy(fftAmplitudeBuffer);
+
+        // Calculate SPL per octave band
+        for (int i = 0; i < octaveBandsCenterFrequencies.length; i++) {
+            octaveBandFilter(octaveBandsCenterFrequencies[i], fftAmplitudeBuffer);
+            double lInstPerOctave = calculateSignalEnergy(octaveBandAmplitudeBuffer);
+            lInstPerOctave = convertEnergyToDB(lInstPerOctave);
+            lInstPerOctave += applyFrequencyWeightingPerOctaveBand(weightingType, i);
+            lInstPerOctave += applyCalibrationCorrectionPerOctaveBand(i);
+
+            outputLinst += pow(10, 0.1*lInstPerOctave);
+        }
+        //double weightingValue = applyFrequencyWeightingPerOctaveBand(weightingType, 0); // used for later
         outputLinst = convertEnergyToDB(outputLinst);
 
+        /*
+        // TODO move commented code for later usage
+        // Calculate Linst
+        double outputLinst;
+        applyWindowFunction(windowFunction, buffer);
+        calculateFFTAmplitude(signalBuffer);
+        outputLinst = calculateSignalEnergy(fftAmplitudeBuffer);
+        outputLinst = convertEnergyToDB(outputLinst);
+        */
+
         // Set lMax and lMin values, wait 8 measurements cycles until outputLinst value stabilises
-        if (numberOfMeasurementsTaken > 8) {
+        if (numberOfMeasurementsTaken <= 8) {
+            lMax = outputLinst;
+            lMin = outputLinst;
+        }
+        else {
             if (lMax < outputLinst) lMax = outputLinst;
             if (lMin > outputLinst) lMin = outputLinst;
         }
@@ -62,7 +93,7 @@ public class SPLCalculations {
         return lMin;
     }
 
-    private void applyWindowFunction(int windowFunction, @NonNull short[] buffer) {
+    private void applyWindowFunction(String windowFunction, @NonNull short[] buffer) {
         double[] windowedSignal = signalBuffer;
         int bufferLength = buffer.length;
 
@@ -79,7 +110,7 @@ public class SPLCalculations {
 
         switch (windowFunction) {
             // Hann Window
-            case 0:
+            case "hann":
                 Log.d(TAG, "Applied Hann Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double hannEquation = 0.5 * (1 - cos(2*PI*i / (bufferLength - 1)));
@@ -87,7 +118,7 @@ public class SPLCalculations {
                 }
                 break;
             // Hamming Window
-            case 1:
+            case "hamming":
                 Log.d(TAG, "Applied Hamming Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double hammingEquation = hammingA0 - hammingA1 * cos(2*PI*i / (bufferLength - 1));
@@ -95,7 +126,7 @@ public class SPLCalculations {
                 }
                 break;
             // FlatTop Window
-            case 2:
+            case "flat_top":
                 Log.d(TAG, "Applied FlatTop Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double cosine1 = flatTopA1 * cos(2*PI*i / (bufferLength - 1));
@@ -161,18 +192,47 @@ public class SPLCalculations {
         return 10 * log10(energyValue);
     }
 
-    private short[] splitIntoOctaveBands(int filter, short[] buffer) {
+    private void octaveBandFilter(int centerFrequency, double[] buffer) {
         // TODO split an FFT signal into octave bands with correct center frequency for further signal processing
-        return buffer;
+        // Convert FFT Amplitude to an octave band using equation found at https://www.ap.com/technical-library/deriving-fractional-octave-spectra-from-the-fft-with-apx/
+        int octaveBandAmplitudeBufferLength = octaveBandAmplitudeBuffer.length;
+        double frequencyResolution = (double)SAMPLE_RATE/AUDIO_BUFFER_SIZE;
+
+        for (int i = 0; i < octaveBandAmplitudeBufferLength; i++) {
+            double currentFrequency = frequencyResolution * i;
+            double frequencyParameter = 1.507 * ((currentFrequency / centerFrequency) - (centerFrequency / currentFrequency));
+            double denominator = 1 + pow(frequencyParameter, 6);
+            double octaveBandFilterEquation = sqrt(1 / denominator);
+            octaveBandAmplitudeBuffer[i] = octaveBandFilterEquation * buffer[i];
+        }
     }
 
-    private short[] applyFrequencyWeightings(int weightingType, short[] buffer) {
+    private double applyFrequencyWeightingPerOctaveBand(String weightingType, int weightingArrayIndex) {
         // TODO return an array using an appropriate frequency weighting based on settings in root_preferences
-        return buffer;
+        double outputWeightingValue;
+        switch (weightingType) {
+            case "a":
+                Log.d(TAG, "Applied A-weighting");
+                outputWeightingValue = aWeightings[weightingArrayIndex];
+                break;
+            case "c":
+                Log.d(TAG, "Applied C-weighting");
+                outputWeightingValue = cWeightings[weightingArrayIndex];
+                break;
+            case "z":
+                Log.d(TAG, "Applied no weighting");
+                outputWeightingValue = 0.0;
+                break;
+            default:
+                Log.d(TAG, "Error occurred. Applied A-weighting");
+                outputWeightingValue = aWeightings[weightingArrayIndex];
+                break;
+        }
+        return outputWeightingValue;
     }
 
-    private short[] applyCalibrationCorrection(int calibrationValue, short[] buffer) {
+    private double applyCalibrationCorrectionPerOctaveBand(int octaveBandArrayIndex) {
         // TODO return an array using an appropriate calibration value based on settings in CalibrationActvity
-        return buffer;
+        return 0.0;
     }
 }
