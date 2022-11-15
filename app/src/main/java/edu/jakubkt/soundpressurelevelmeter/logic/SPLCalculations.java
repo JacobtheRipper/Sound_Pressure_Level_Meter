@@ -193,7 +193,6 @@ public class SPLCalculations {
     }
 
     private void octaveBandFilter(int centerFrequency, double[] buffer) {
-        // TODO split an FFT signal into octave bands with correct center frequency for further signal processing
         // Convert FFT Amplitude to an octave band using equation found at https://www.ap.com/technical-library/deriving-fractional-octave-spectra-from-the-fft-with-apx/
         int octaveBandAmplitudeBufferLength = octaveBandAmplitudeBuffer.length;
         double frequencyResolution = (double)SAMPLE_RATE/AUDIO_BUFFER_SIZE;
@@ -208,7 +207,6 @@ public class SPLCalculations {
     }
 
     private double applyFrequencyWeightingPerOctaveBand(String weightingType, int weightingArrayIndex) {
-        // TODO return an array using an appropriate frequency weighting based on settings in root_preferences
         double outputWeightingValue;
         switch (weightingType) {
             case "a":
