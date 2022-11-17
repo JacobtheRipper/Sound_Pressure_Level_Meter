@@ -85,9 +85,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
-        //TODO create a CalibrationActivity layout
+
         binding.mainMenuLayout.buttonCalibration.setOnClickListener {
-            Toast.makeText(applicationContext, R.string.placeholder_string, Toast.LENGTH_SHORT).show()
+            Intent(this, CalibrationActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 
