@@ -22,41 +22,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="56dp">
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_125Hz"
-            android:layout_width="64dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:contentDescription="@string/drawable_octave_band_125Hz_description"
-            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_125Hz"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_125Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
-
-        <ImageButton
-            android:id="@+id/button_down_octave_band_125Hz"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_125Hz"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_125Hz"
-            app:srcCompat="@drawable/triangular_button_down" />
-
-        <ImageButton
-            android:id="@+id/button_up_octave_band_125Hz"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_125Hz"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_125Hz"
-            app:srcCompat="@drawable/triangular_button_up" />
-
+        <!--
         <TextView
             android:id="@+id/calibration_parameter_name"
             android:layout_width="wrap_content"
@@ -69,9 +35,72 @@
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+        -->
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_125Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_125Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_125Hz"
+            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_250Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_125Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_125Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textview_octave_band_center_frequency_125Hz"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/center_frequency_octave_band_250Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_125Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_125Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_125Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_125Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_down_octave_band_250Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_125Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/calibration_value_octave_band_125Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/textview_calibration_constant_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_125Hz"
+            app:layout_constraintEnd_toStartOf="@+id/calibration_value_octave_band_250Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_125Hz" />
 
         <TextView
             android:id="@+id/linst_value_octave_band_125Hz"
@@ -79,41 +108,657 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
-            android:text="90"
+            android:text="@string/textview_calibration_linst_placeholder_value"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_125Hz"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_250Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageButton
+            android:id="@+id/button_up_octave_band_125Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_125Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_125Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_250Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_125Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
+
         <TextView
-            android:id="@+id/calibration_value_octave_band_125Hz"
+            android:id="@+id/linst_value_octave_band_250Hz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
+            android:text="@string/textview_calibration_linst_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_250Hz"
+            app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_500Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_125Hz"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/linst_value_octave_band_500Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/textview_calibration_linst_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_500Hz"
+            app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_1000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_250Hz"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/linst_value_octave_band_1000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/textview_calibration_linst_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_1000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_2000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_500Hz"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/linst_value_octave_band_2000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/textview_calibration_linst_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_2000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_4000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_1000Hz"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/linst_value_octave_band_4000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/textview_calibration_linst_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_4000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_8000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_2000Hz"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/linst_value_octave_band_8000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/textview_calibration_linst_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_8000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_16000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_4000Hz"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/linst_value_octave_band_16000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/textview_calibration_linst_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_16000Hz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_8000Hz"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_250Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textview_octave_band_center_frequency_250Hz"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/center_frequency_octave_band_500Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_125Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_250Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_250Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_250Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_250Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_down_octave_band_500Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_down_octave_band_125Hz"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_250Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/calibration_value_octave_band_250Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:text="@string/textview_calibration_constant_placeholder_value"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_125Hz"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_250Hz"
+            app:layout_constraintEnd_toStartOf="@+id/calibration_value_octave_band_500Hz"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_125Hz" />
+            app:layout_constraintStart_toEndOf="@+id/calibration_value_octave_band_125Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_250Hz" />
+
+        <ImageButton
+            android:id="@+id/button_up_octave_band_250Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_250Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_250Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_500Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_125Hz"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_250Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_250Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_250Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_250Hz"
+            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_500Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_125Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_250Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_4000Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_4000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_4000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_8000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_2000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_4000Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_500Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_500Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_500Hz"
+            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_1000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_250Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_500Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <ImageButton
+            android:id="@+id/button_up_octave_band_500Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_500Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_500Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_1000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_250Hz"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_500Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
-            android:id="@+id/center_frequency_octave_band_125Hz"
+            android:id="@+id/calibration_value_octave_band_500Hz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/textview_calibration_constant_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_500Hz"
+            app:layout_constraintEnd_toStartOf="@+id/calibration_value_octave_band_1000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/calibration_value_octave_band_250Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_500Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_500Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_500Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_500Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_down_octave_band_1000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_down_octave_band_250Hz"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_500Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_500Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
-            android:text="125 Hz"
+            android:text="@string/textview_octave_band_center_frequency_500Hz"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/center_frequency_octave_band_1000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_250Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_500Hz" />
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_1000Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_1000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_1000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_2000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_500Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_1000Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <ImageButton
+            android:id="@+id/button_up_octave_band_1000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_1000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_1000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_2000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_500Hz"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_1000Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
+
+        <TextView
+            android:id="@+id/calibration_value_octave_band_1000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/textview_calibration_constant_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_1000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/calibration_value_octave_band_2000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/calibration_value_octave_band_500Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_1000Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_1000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_1000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_1000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_down_octave_band_2000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_down_octave_band_500Hz"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_1000Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_1000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textview_octave_band_center_frequency_1000Hz"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/center_frequency_octave_band_2000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_500Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_1000Hz" />
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_2000Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_2000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_2000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_4000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_1000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_2000Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <ImageButton
+            android:id="@+id/button_up_octave_band_2000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_2000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_2000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_4000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_1000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_2000Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
+
+        <TextView
+            android:id="@+id/calibration_value_octave_band_2000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/textview_calibration_constant_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_2000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/calibration_value_octave_band_4000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/calibration_value_octave_band_1000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_2000Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_2000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_2000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_2000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_down_octave_band_4000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_down_octave_band_1000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_2000Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_2000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textview_octave_band_center_frequency_2000Hz"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/center_frequency_octave_band_4000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_1000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_2000Hz" />
+
+        <ImageButton
+            android:id="@+id/button_up_octave_band_4000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_4000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_4000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_8000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_2000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_4000Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
+
+        <TextView
+            android:id="@+id/calibration_value_octave_band_4000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/textview_calibration_constant_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_4000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/calibration_value_octave_band_8000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/calibration_value_octave_band_2000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_4000Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_4000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_4000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_4000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_down_octave_band_8000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_down_octave_band_2000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_4000Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_4000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textview_octave_band_center_frequency_4000Hz"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/center_frequency_octave_band_8000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_2000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_4000Hz" />
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_8000Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_8000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_8000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_16000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_4000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_8000Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <ImageButton
+            android:id="@+id/button_up_octave_band_8000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_8000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_8000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_16000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_4000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_8000Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
+
+        <TextView
+            android:id="@+id/calibration_value_octave_band_8000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/textview_calibration_constant_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_8000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/calibration_value_octave_band_16000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/calibration_value_octave_band_4000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_8000Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_8000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_8000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_8000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/button_down_octave_band_16000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_down_octave_band_4000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_8000Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_8000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textview_octave_band_center_frequency_8000Hz"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/center_frequency_octave_band_16000Hz"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_4000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_8000Hz" />
+
+        <ImageView
+            android:id="@+id/drawable_octave_band_16000Hz"
+            android:layout_width="32dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/drawable_octave_band_16000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_16000Hz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_8000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_16000Hz"
+            app:srcCompat="@drawable/bar_graph_rectangle" />
+
+        <ImageButton
+            android:id="@+id/button_up_octave_band_16000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imagebutton_up_16000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/calibration_value_octave_band_16000Hz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_8000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_16000Hz"
+            app:srcCompat="@drawable/triangular_button_up" />
+
+        <TextView
+            android:id="@+id/calibration_value_octave_band_16000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/textview_calibration_constant_placeholder_value"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/button_down_octave_band_16000Hz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/calibration_value_octave_band_8000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_up_octave_band_16000Hz" />
+
+        <ImageButton
+            android:id="@+id/button_down_octave_band_16000Hz"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/imagebutton_down_16000Hz_description"
+            app:layout_constraintBottom_toTopOf="@+id/center_frequency_octave_band_16000Hz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_down_octave_band_8000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/calibration_value_octave_band_16000Hz"
+            app:srcCompat="@drawable/triangular_button_down" />
+
+        <TextView
+            android:id="@+id/center_frequency_octave_band_16000Hz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textview_octave_band_center_frequency_16000Hz"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -121,8 +766,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_125Hz" />
+            app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_8000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_16000Hz" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

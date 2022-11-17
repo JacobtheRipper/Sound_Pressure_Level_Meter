@@ -31,8 +31,36 @@
     <string name="drawable_octave_band_8000Hz_description">8000 Hz bar drawable</string>
     <string name="drawable_octave_band_16000Hz_description">16000 Hz bar drawable</string>
 
+    <string name="imagebutton_down_125Hz_description">Button down 125 Hz</string>
+    <string name="imagebutton_down_250Hz_description">Button down 250 Hz</string>
+    <string name="imagebutton_down_500Hz_description">Button down 500 Hz</string>
+    <string name="imagebutton_down_1000Hz_description">Button down 1000 Hz</string>
+    <string name="imagebutton_down_2000Hz_description">Button down 2000 Hz</string>
+    <string name="imagebutton_down_4000Hz_description">Button down 4000 Hz</string>
+    <string name="imagebutton_down_8000Hz_description">Button down 8000 Hz</string>
+    <string name="imagebutton_down_16000Hz_description">Button down 16000 Hz</string>
+
+    <string name="imagebutton_up_125Hz_description">Button up 125 Hz</string>
+    <string name="imagebutton_up_250Hz_description">Button up 250 Hz</string>
+    <string name="imagebutton_up_500Hz_description">Button up 500 Hz</string>
+    <string name="imagebutton_up_1000Hz_description">Button up 1000 Hz</string>
+    <string name="imagebutton_up_2000Hz_description">Button up 2000 Hz</string>
+    <string name="imagebutton_up_4000Hz_description">Button up 4000 Hz</string>
+    <string name="imagebutton_up_8000Hz_description">Button up 8000 Hz</string>
+    <string name="imagebutton_up_16000Hz_description">Button up 16000 Hz</string>
+
+    <string name="textview_calibration_linst_placeholder_value">90</string>
     <string name="textview_calibration_constant_placeholder_value">0</string>
     <string name="textview_calibration_parameter">Linst [dB] per octave band</string>
+
+    <string name="textview_octave_band_center_frequency_125Hz">125 Hz</string>
+    <string name="textview_octave_band_center_frequency_250Hz">250 Hz</string>
+    <string name="textview_octave_band_center_frequency_500Hz">500 Hz</string>
+    <string name="textview_octave_band_center_frequency_1000Hz">1000 Hz</string>
+    <string name="textview_octave_band_center_frequency_2000Hz">2000 Hz</string>
+    <string name="textview_octave_band_center_frequency_4000Hz">4000 Hz</string>
+    <string name="textview_octave_band_center_frequency_8000Hz">8000 Hz</string>
+    <string name="textview_octave_band_center_frequency_16000Hz">16000 Hz</string>
 
     <!-- Measurement Menu Items -->
     <string name="action_return_to_main_menu">Back</string>
