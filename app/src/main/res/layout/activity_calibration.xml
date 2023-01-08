@@ -22,12 +22,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="56dp">
 
-        <!--
-        <TextView
+        <edu.jakubkt.soundpressurelevelmeter.logic.VerticalTextView
             android:id="@+id/calibration_parameter_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="-90"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:gravity="bottom|center_horizontal"
             android:text="@string/textview_calibration_parameter"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -35,11 +34,10 @@
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.03"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
-        -->
 
         <ImageView
             android:id="@+id/drawable_octave_band_125Hz"

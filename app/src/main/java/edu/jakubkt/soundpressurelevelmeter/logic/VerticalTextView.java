@@ -2,7 +2,6 @@ package edu.jakubkt.soundpressurelevelmeter.logic;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Region;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
@@ -13,16 +12,19 @@ public class VerticalTextView extends androidx.appcompat.widget.AppCompatTextVie
 
     private final boolean renderedTopDown;
 
+    public VerticalTextView(@NonNull Context context) {
+        super(context);
+        renderedTopDown = setRenderedTopDownForBottomGravity();
+    }
+
     public VerticalTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        int textViewGravity = getGravity();
-        // render text from top to bottom, if android.gravity="bottom" render from bottom to top
-        if (Gravity.isVertical(textViewGravity) && (textViewGravity & Gravity.VERTICAL_GRAVITY_MASK) == Gravity.BOTTOM) {
-            setGravity((textViewGravity & Gravity.HORIZONTAL_GRAVITY_MASK) | Gravity.TOP);
-            renderedTopDown = false;
-        }
-        else
-            renderedTopDown = true;
+        renderedTopDown = setRenderedTopDownForBottomGravity();
+    }
+
+    public VerticalTextView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        renderedTopDown = setRenderedTopDownForBottomGravity();
     }
 
     @Override
@@ -48,7 +50,22 @@ public class VerticalTextView extends androidx.appcompat.widget.AppCompatTextVie
             canvas.translate(0, getWidth());
             canvas.rotate(-90);
         }
-        canvas.clipRect(0, 0, getWidth(), getHeight(), Region.Op.REPLACE);
+
+        canvas.save();
+        canvas.clipRect(0, 0, getWidth(), getHeight());
+        canvas.restore();
+
         super.draw(canvas);
+    }
+
+    private boolean setRenderedTopDownForBottomGravity() {
+        int textViewGravity = getGravity();
+        // render text from top to bottom, if android:gravity="bottom" render from bottom to top
+        if (Gravity.isVertical(textViewGravity) && (textViewGravity & Gravity.VERTICAL_GRAVITY_MASK) == Gravity.BOTTOM) {
+            setGravity((textViewGravity & Gravity.HORIZONTAL_GRAVITY_MASK) | Gravity.TOP);
+            return false;
+        }
+        else
+            return true;
     }
 }
