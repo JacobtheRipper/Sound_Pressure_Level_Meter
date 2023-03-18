@@ -21,15 +21,15 @@
     <string name="drawable_lmax_field_description">Lmax [dB]</string>
     <string name="textview_linst_field_placeholder_value">0.0</string>
 
-    <!-- SPL Meter Activity Layout Items -->
-    <string name="drawable_octave_band_125Hz_description">125 Hz bar drawable</string>
-    <string name="drawable_octave_band_250Hz_description">250 Hz bar drawable</string>
-    <string name="drawable_octave_band_500Hz_description">500 Hz bar drawable</string>
-    <string name="drawable_octave_band_1000Hz_description">1000 Hz bar drawable</string>
-    <string name="drawable_octave_band_2000Hz_description">2000 Hz bar drawable</string>
-    <string name="drawable_octave_band_4000Hz_description">4000 Hz bar drawable</string>
-    <string name="drawable_octave_band_8000Hz_description">8000 Hz bar drawable</string>
-    <string name="drawable_octave_band_16000Hz_description">16000 Hz bar drawable</string>
+    <!-- Calibration Activity Layout Items -->
+    <string name="progressbar_octave_band_125Hz_description">125 Hz progressbar</string>
+    <string name="progressbar_octave_band_250Hz_description">250 Hz progressbar</string>
+    <string name="progressbar_octave_band_500Hz_description">500 Hz progressbar</string>
+    <string name="progressbar_octave_band_1000Hz_description">1000 Hz progressbar</string>
+    <string name="progressbar_octave_band_2000Hz_description">2000 Hz progressbar</string>
+    <string name="progressbar_octave_band_4000Hz_description">4000 Hz progressbar</string>
+    <string name="progressbar_octave_band_8000Hz_description">8000 Hz progressbar</string>
+    <string name="progressbar_octave_band_16000Hz_description">16000 Hz progressbar</string>
 
     <string name="imagebutton_down_125Hz_description">Button down 125 Hz</string>
     <string name="imagebutton_down_250Hz_description">Button down 250 Hz</string>

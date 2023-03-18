@@ -39,17 +39,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_125Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_125Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_125Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_125Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_125Hz"
-            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_250Hz"
+            app:layout_constraintEnd_toStartOf="@+id/progressbar_octave_band_250Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_125Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_125Hz" />
 
         <TextView
             android:id="@+id/center_frequency_octave_band_125Hz"
@@ -104,7 +105,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_125Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_125Hz"
             app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_250Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +120,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_250Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_125Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_125Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
@@ -132,7 +133,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_250Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_250Hz"
             app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_500Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_125Hz"
@@ -148,7 +149,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_500Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_500Hz"
             app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_1000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_250Hz"
@@ -164,7 +165,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_1000Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_1000Hz"
             app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_2000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_500Hz"
@@ -180,7 +181,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_2000Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_2000Hz"
             app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_4000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_1000Hz"
@@ -196,7 +197,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_4000Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_4000Hz"
             app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_8000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_2000Hz"
@@ -212,7 +213,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_8000Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_8000Hz"
             app:layout_constraintEnd_toStartOf="@+id/linst_value_octave_band_16000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_4000Hz"
@@ -228,7 +229,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawable_octave_band_16000Hz"
+            app:layout_constraintBottom_toTopOf="@+id/progressbar_octave_band_16000Hz"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linst_value_octave_band_8000Hz"
@@ -286,44 +287,47 @@
             app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_500Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_125Hz"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_250Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_250Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_250Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_250Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_250Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_250Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_250Hz"
-            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_500Hz"
+            app:layout_constraintEnd_toStartOf="@+id/progressbar_octave_band_500Hz"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_125Hz"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_250Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintStart_toEndOf="@+id/progressbar_octave_band_125Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_250Hz" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_4000Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_4000Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_4000Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_4000Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_4000Hz"
-            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_8000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/progressbar_octave_band_8000Hz"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_2000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_4000Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintStart_toEndOf="@+id/progressbar_octave_band_2000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_4000Hz" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_500Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_500Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_500Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_500Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_500Hz"
-            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_1000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/progressbar_octave_band_1000Hz"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_250Hz"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_500Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintStart_toEndOf="@+id/progressbar_octave_band_250Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_500Hz" />
 
         <ImageButton
             android:id="@+id/button_up_octave_band_500Hz"
@@ -334,7 +338,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_1000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_250Hz"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_500Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_500Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
@@ -380,17 +384,18 @@
             app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_250Hz"
             app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_500Hz" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_1000Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_1000Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_1000Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_1000Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_1000Hz"
-            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_2000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/progressbar_octave_band_2000Hz"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_500Hz"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_1000Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintStart_toEndOf="@+id/progressbar_octave_band_500Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_1000Hz" />
 
         <ImageButton
             android:id="@+id/button_up_octave_band_1000Hz"
@@ -401,7 +406,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_2000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_500Hz"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_1000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_1000Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
@@ -447,17 +452,18 @@
             app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_500Hz"
             app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_1000Hz" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_2000Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_2000Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_2000Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_2000Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_2000Hz"
-            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_4000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/progressbar_octave_band_4000Hz"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_1000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_2000Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintStart_toEndOf="@+id/progressbar_octave_band_1000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_2000Hz" />
 
         <ImageButton
             android:id="@+id/button_up_octave_band_2000Hz"
@@ -468,7 +474,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_4000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_1000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_2000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_2000Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
@@ -523,7 +529,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_8000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_2000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_4000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_4000Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
@@ -569,17 +575,18 @@
             app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_2000Hz"
             app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_4000Hz" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_8000Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_8000Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_8000Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_8000Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_8000Hz"
-            app:layout_constraintEnd_toStartOf="@+id/drawable_octave_band_16000Hz"
+            app:layout_constraintEnd_toStartOf="@+id/progressbar_octave_band_16000Hz"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_4000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_8000Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintStart_toEndOf="@+id/progressbar_octave_band_4000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_8000Hz" />
 
         <ImageButton
             android:id="@+id/button_up_octave_band_8000Hz"
@@ -590,7 +597,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button_up_octave_band_16000Hz"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_4000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_8000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_8000Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
@@ -636,17 +643,18 @@
             app:layout_constraintStart_toEndOf="@+id/center_frequency_octave_band_4000Hz"
             app:layout_constraintTop_toBottomOf="@+id/button_down_octave_band_8000Hz" />
 
-        <ImageView
-            android:id="@+id/drawable_octave_band_16000Hz"
+        <ProgressBar
+            android:id="@+id/progressbar_octave_band_16000Hz"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="32dp"
             android:layout_height="128dp"
-            android:contentDescription="@string/drawable_octave_band_16000Hz_description"
+            android:contentDescription="@string/progressbar_octave_band_16000Hz_description"
+            android:progressDrawable="@drawable/callibration_activity_progressbar_theme"
             app:layout_constraintBottom_toTopOf="@+id/button_up_octave_band_16000Hz"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/drawable_octave_band_8000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_16000Hz"
-            app:srcCompat="@drawable/bar_graph_rectangle" />
+            app:layout_constraintStart_toEndOf="@+id/progressbar_octave_band_8000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/linst_value_octave_band_16000Hz" />
 
         <ImageButton
             android:id="@+id/button_up_octave_band_16000Hz"
@@ -657,7 +665,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/button_up_octave_band_8000Hz"
-            app:layout_constraintTop_toBottomOf="@+id/drawable_octave_band_16000Hz"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_octave_band_16000Hz"
             app:srcCompat="@drawable/triangular_button_up" />
 
         <TextView
