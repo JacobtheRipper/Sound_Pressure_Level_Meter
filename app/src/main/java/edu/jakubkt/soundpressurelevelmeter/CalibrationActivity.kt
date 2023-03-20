@@ -26,12 +26,15 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
 
     //TODO remove after testing
     private lateinit var random: Random
+    private val RANDOM_MAX_RANGE: Int = 120
 
     // Manage updating UI TextViews on a UI thread
     @Volatile
     private var updateUI: Boolean = true
 
-    //TODO test these changes and push to the repo
+    //TODO retrieve calibration values from Settings Activity
+    private val octaveBandCalibrationValues = IntArray(8) { 0 }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalibrationBinding.inflate(layoutInflater)
@@ -46,6 +49,8 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
 
         recorder = MicrophoneRecorder(this, applicationContext, this)
         recorder.startRecording()
+
+        setOnClickListeners()
 
         //TODO remove after testing
         random = Random()
@@ -90,26 +95,25 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
     }
 
     override fun processAudioBuffer(audioBuffer: ShortArray?) {
-        //TODO Finish implementing. Test the UI with random numbers
-        //TODO Progressbar does not show up. Look into that
+        //TODO Finish implementing
         if(updateUI) {
             updateUI = false
 
-            val linstValueOctaveBand125Hz = random.nextDouble()
-            val linstValueOctaveBand250Hz = random.nextDouble()
-            val linstValueOctaveBand500Hz = random.nextDouble()
-            val linstValueOctaveBand1000Hz = random.nextDouble()
-            val linstValueOctaveBand2000Hz = random.nextDouble()
-            val linstValueOctaveBand4000Hz = random.nextDouble()
-            val linstValueOctaveBand8000Hz = random.nextDouble()
-            val linstValueOctaveBand16000Hz = random.nextDouble()
+            val linstValueOctaveBand125Hz = random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand250Hz = random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand500Hz = random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand1000Hz = random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand2000Hz = random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand4000Hz = random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand8000Hz = random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand16000Hz = random.nextDouble() * RANDOM_MAX_RANGE
 
             runOnUiThread {
                 // Rounding floating-point number to 1 decimal place
                 val df = DecimalFormat("#.#")
                 df.roundingMode = RoundingMode.HALF_UP
 
-                binding.linstValueOctaveBand125Hz.text = df.format(linstValueOctaveBand125Hz)
+                binding.linstValueOctaveBand125Hz.text = df.format(linstValueOctaveBand125Hz + octaveBandCalibrationValues[0])
                 binding.linstValueOctaveBand250Hz.text = df.format(linstValueOctaveBand250Hz)
                 binding.linstValueOctaveBand500Hz.text = df.format(linstValueOctaveBand500Hz)
                 binding.linstValueOctaveBand1000Hz.text = df.format(linstValueOctaveBand1000Hz)
@@ -117,8 +121,23 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
                 binding.linstValueOctaveBand4000Hz.text = df.format(linstValueOctaveBand4000Hz)
                 binding.linstValueOctaveBand8000Hz.text = df.format(linstValueOctaveBand8000Hz)
                 binding.linstValueOctaveBand16000Hz.text = df.format(linstValueOctaveBand16000Hz)
+
+                binding.calibrationValueOctaveBand125Hz.text = octaveBandCalibrationValues[0].toString()
+
+                binding.progressbarOctaveBand125Hz.progress = (linstValueOctaveBand125Hz).toInt() + octaveBandCalibrationValues[0]
                 updateUI = true
             }
+        }
+    }
+
+    fun setOnClickListeners() {
+        //TODO set button listeners for every button in every octave band
+        binding.buttonUpOctaveBand125Hz.setOnClickListener {
+            octaveBandCalibrationValues[0]++
+        }
+
+        binding.buttonDownOctaveBand125Hz.setOnClickListener {
+            octaveBandCalibrationValues[0]--
         }
     }
 }

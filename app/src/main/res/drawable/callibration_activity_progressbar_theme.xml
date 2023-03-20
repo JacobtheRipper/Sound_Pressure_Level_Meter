@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <color android:color="@color/light_green"/>
+    </item>
 
     <item android:id="@android:id/progress">
         <clip android:clipOrientation="vertical" android:gravity="bottom">
-            <color android:color="@color/light_green"/>
+            <color android:color="@color/dark_green"/>
         </clip>
     </item>
 
-</selector>
+</layer-list>
