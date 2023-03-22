@@ -23,4 +23,55 @@
         <item>a</item>
         <item>c</item>
     </string-array>
+
+    <!-- Measurement Settings Calibration correction values per octave band-->
+    <string-array name="calibration_correction_entries">
+        <item>-10 dB</item>
+        <item>-9 dB</item>
+        <item>-8 dB</item>
+        <item>-7 dB</item>
+        <item>-6 dB</item>
+        <item>-5 dB</item>
+        <item>-4 dB</item>
+        <item>-3 dB</item>
+        <item>-2 dB</item>
+        <item>-1 dB</item>
+        <item>0 dB</item>
+        <item>1 dB</item>
+        <item>2 dB</item>
+        <item>3 dB</item>
+        <item>3 dB</item>
+        <item>4 dB</item>
+        <item>5 dB</item>
+        <item>6 dB</item>
+        <item>7 dB</item>
+        <item>8 dB</item>
+        <item>9 dB</item>
+        <item>10 dB</item>
+    </string-array>
+
+    <string-array name="calibration_correction_values">
+        <item>-10</item>
+        <item>-9</item>
+        <item>-8</item>
+        <item>-7</item>
+        <item>-6</item>
+        <item>-5</item>
+        <item>-4</item>
+        <item>-3</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

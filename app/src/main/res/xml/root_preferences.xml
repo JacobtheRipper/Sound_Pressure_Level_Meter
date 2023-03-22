@@ -20,4 +20,71 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/meas_settings_calibration_header">
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="125Hz"
+            app:title="@string/calibration_125Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="250Hz"
+            app:title="@string/calibration_250Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="500Hz"
+            app:title="@string/calibration_500Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="1000Hz"
+            app:title="@string/calibration_1000Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="2000Hz"
+            app:title="@string/calibration_2000Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="4000Hz"
+            app:title="@string/calibration_4000Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="8000Hz"
+            app:title="@string/calibration_8000Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/calibration_correction_entries"
+            app:entryValues="@array/calibration_correction_values"
+            app:key="16000Hz"
+            app:title="@string/calibration_16000Hz_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

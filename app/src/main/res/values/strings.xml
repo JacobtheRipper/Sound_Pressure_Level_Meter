@@ -71,9 +71,20 @@
 
     <!-- Preference Titles -->
     <string name="meas_settings_header">Measurement settings</string>
+    <string name="meas_settings_calibration_header">Calibration correction values</string>
 
     <!-- Measurement Settings Preferences -->
     <string name="window_title">Window Function</string>
     <string name="weightings_title">Measurement Weightings</string>
+
+    <!-- Measurement Settings Calibration correction values -->
+    <string name="calibration_125Hz_title">Correction value 125 Hz</string>
+    <string name="calibration_250Hz_title">Correction value 250 Hz</string>
+    <string name="calibration_500Hz_title">Correction value 500 Hz</string>
+    <string name="calibration_1000Hz_title">Correction value 1000 Hz</string>
+    <string name="calibration_2000Hz_title">Correction value 2000 Hz</string>
+    <string name="calibration_4000Hz_title">Correction value 4000 Hz</string>
+    <string name="calibration_8000Hz_title">Correction value 8000 Hz</string>
+    <string name="calibration_16000Hz_title">Correction value 16000 Hz</string>
 
 </resources>
