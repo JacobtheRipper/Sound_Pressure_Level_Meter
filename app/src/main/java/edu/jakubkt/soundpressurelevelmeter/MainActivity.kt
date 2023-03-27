@@ -3,17 +3,18 @@ package edu.jakubkt.soundpressurelevelmeter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.preference.PreferenceManager
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivityMainBinding
+import org.apache.commons.math3.util.ArithmeticUtils.pow
 
 class MainActivity : AppCompatActivity() {
 
     companion object AppConstants {
-        // TODO move constants to a different file
         // requestCode for permissions
         const val REQUEST_CODE_MICROPHONE: Int = 1
         const val SAMPLE_RATE: Int = 44100
@@ -22,7 +23,11 @@ class MainActivity : AppCompatActivity() {
         // for passing settings data between activities
         const val EXTRA_WINDOW_TYPE: String = "EXTRA_WINDOW_TYPE"
         const val EXTRA_WEIGHTINGS_TYPE: String = "EXTRA_WEIGHTINGS_TYPE"
+        const val EXTRA_CALIBRATION_VALUES: String = "EXTRA_CALIBRATION_VALUES"
     }
+
+    private val TAG: String = "MainActivity"
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,17 +92,42 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.mainMenuLayout.buttonCalibration.setOnClickListener {
+            val currentSettings = retrieveSettings()
+            val calibrationValues = IntArray(8) {0}
+            for (i in 2..9)
+                calibrationValues[i-2] = currentSettings[i].toInt()
+
+            for ((index, value) in calibrationValues.withIndex())
+                Log.d(TAG, "Calibration value being sent for ${pow(2, index)*125} Hz: $value")
+
             Intent(this, CalibrationActivity::class.java).also {
+                it.putExtra(EXTRA_CALIBRATION_VALUES, calibrationValues)
                 startActivity(it)
             }
         }
     }
 
-    private fun retrieveSettings(): Array<String?> {
+    private fun retrieveSettings(): Array<String> {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val windowType: String? = preferences.getString("window", "hann")
-        val weightingsType: String? = preferences.getString("weightings", "a")
+        val windowType: String = preferences.getString("window", "hann").toString()
+        val weightingsType: String = preferences.getString("weightings", "a").toString()
+        val calibrationValues: Array<String> = Array(8) {"0"}
 
-        return arrayOf(windowType, weightingsType)
+        calibrationValues[0] = preferences.getString("125Hz", "0").toString()
+        calibrationValues[1] = preferences.getString("250Hz", "0").toString()
+        calibrationValues[2] = preferences.getString("500Hz", "0").toString()
+        calibrationValues[3] = preferences.getString("1000Hz", "0").toString()
+        calibrationValues[4] = preferences.getString("2000Hz", "0").toString()
+        calibrationValues[5] = preferences.getString("4000Hz", "0").toString()
+        calibrationValues[6] = preferences.getString("8000Hz", "0").toString()
+        calibrationValues[7] = preferences.getString("16000Hz", "0").toString()
+
+        for ((index, value) in calibrationValues.withIndex())
+            Log.d(TAG, "Calibration value received for ${pow(2, index)*125} Hz: $value")
+
+        // Multiple return types are not possible in JVM
+        return arrayOf(windowType, weightingsType, calibrationValues[0], calibrationValues[1],
+            calibrationValues[2], calibrationValues[3], calibrationValues[4], calibrationValues[5],
+            calibrationValues[6], calibrationValues[7])
     }
 }

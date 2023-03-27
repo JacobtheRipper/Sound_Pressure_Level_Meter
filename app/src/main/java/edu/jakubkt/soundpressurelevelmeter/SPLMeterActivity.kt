@@ -22,7 +22,7 @@ import java.text.DecimalFormat
 
 class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     private lateinit var binding: ActivitySplmeterBinding
-    private  lateinit var calculation: SPLCalculations
+    private lateinit var calculation: SPLCalculations
     private lateinit var recorder: MicrophoneRecorder
 
     private lateinit var windowType: String

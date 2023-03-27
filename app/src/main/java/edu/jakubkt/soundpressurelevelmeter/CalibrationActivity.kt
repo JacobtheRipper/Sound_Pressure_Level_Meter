@@ -3,37 +3,36 @@ package edu.jakubkt.soundpressurelevelmeter
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+
+import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.EXTRA_CALIBRATION_VALUES
 
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivityCalibrationBinding
 import edu.jakubkt.soundpressurelevelmeter.logic.AudioBufferProcessing
 import edu.jakubkt.soundpressurelevelmeter.logic.MicrophoneRecorder
 import edu.jakubkt.soundpressurelevelmeter.logic.SPLCalculations
+import org.apache.commons.math3.util.ArithmeticUtils.pow
 
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.*
 
 class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
+    private val TAG: String = "CalibrationActivity"
+
     private lateinit var binding: ActivityCalibrationBinding
-    private  lateinit var calculation: SPLCalculations
+    private lateinit var calculation: SPLCalculations
     private lateinit var recorder: MicrophoneRecorder
 
     private lateinit var windowType: String
     private lateinit var weightingsType: String
-
-    //TODO remove after testing
-    private lateinit var random: Random
-    private val RANDOM_MAX_RANGE: Int = 120
+    private lateinit var octaveBandsCalibrationValues: IntArray
 
     // Manage updating UI TextViews on a UI thread
     @Volatile
     private var updateUI: Boolean = true
-
-    //TODO retrieve calibration values from Settings Activity
-    private val octaveBandsCalibrationValues = IntArray(8) { 0 }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +43,10 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
 
         windowType = "flat_top"
         weightingsType = "z"
+        octaveBandsCalibrationValues = intent.getIntArrayExtra(EXTRA_CALIBRATION_VALUES) ?: IntArray(8) { 0 }
+
+        for ((index, value) in octaveBandsCalibrationValues.withIndex())
+            Log.d(TAG, "Calibration value received for ${pow(2, index)*125} Hz: $value")
 
         calculation = SPLCalculations()
 
@@ -51,10 +54,6 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
         recorder.startRecording()
 
         setOnClickListeners()
-
-        //TODO remove after testing
-        random = Random()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -73,6 +72,7 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
         return super.onOptionsItemSelected(item)
     }
 
+    //TODO send calibration values back to Settings Activity
     override fun onDestroy() {
         recorder.stopRecording()
         updateUI = false
@@ -99,14 +99,14 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
         if(updateUI) {
             updateUI = false
 
-            val linstValueOctaveBand125Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
-            val linstValueOctaveBand250Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
-            val linstValueOctaveBand500Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
-            val linstValueOctaveBand1000Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
-            val linstValueOctaveBand2000Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
-            val linstValueOctaveBand4000Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
-            val linstValueOctaveBand8000Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
-            val linstValueOctaveBand16000Hz = 50.0 //random.nextDouble() * RANDOM_MAX_RANGE
+            val linstValueOctaveBand125Hz = 50.0
+            val linstValueOctaveBand250Hz = 50.0
+            val linstValueOctaveBand500Hz = 50.0
+            val linstValueOctaveBand1000Hz = 50.0
+            val linstValueOctaveBand2000Hz = 50.0
+            val linstValueOctaveBand4000Hz = 50.0
+            val linstValueOctaveBand8000Hz = 50.0
+            val linstValueOctaveBand16000Hz = 50.0
 
             runOnUiThread {
                 // Rounding floating-point number to 1 decimal place
@@ -152,7 +152,6 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
     }
 
     private fun setOnClickListeners() {
-        //TODO set button listeners for every button in every octave band
         binding.buttonUpOctaveBand125Hz.setOnClickListener {
             octaveBandsCalibrationValues[0]++
         }
