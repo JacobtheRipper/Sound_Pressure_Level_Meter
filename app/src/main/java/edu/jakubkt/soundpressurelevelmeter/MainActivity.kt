@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
             Intent(this, CalibrationActivity::class.java).also {
                 it.putExtra(EXTRA_CALIBRATION_VALUES, calibrationValues)
-                startActivityForResult(it, REQUEST_CODE_LAUNCH_CALIBRATION_ACTIVITY) //startActivity(it)
+                startActivityForResult(it, REQUEST_CODE_LAUNCH_CALIBRATION_ACTIVITY)
             }
         }
     }
