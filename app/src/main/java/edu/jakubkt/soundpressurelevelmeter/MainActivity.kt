@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         const val EXTRA_WINDOW_TYPE: String = "EXTRA_WINDOW_TYPE"
         const val EXTRA_WEIGHTINGS_TYPE: String = "EXTRA_WEIGHTINGS_TYPE"
         const val EXTRA_CALIBRATION_VALUES: String = "EXTRA_CALIBRATION_VALUES"
+        //for returning results from specific activities
+        const val REQUEST_CODE_LAUNCH_CALIBRATION_ACTIVITY: Int = 10
     }
 
     private val TAG: String = "MainActivity"
@@ -66,6 +68,17 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    @Deprecated(message = "Using deprecated onActivityResult method")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_LAUNCH_CALIBRATION_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                editCalibrationSettings(data)
+            }
+        }
+    }
+
     private fun setOnClickListeners() {
         // Switch to a different activity after pressing a button
         binding.mainMenuLayout.buttonSplGraph.setOnClickListener {
@@ -102,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
             Intent(this, CalibrationActivity::class.java).also {
                 it.putExtra(EXTRA_CALIBRATION_VALUES, calibrationValues)
-                startActivity(it)
+                startActivityForResult(it, REQUEST_CODE_LAUNCH_CALIBRATION_ACTIVITY) //startActivity(it)
             }
         }
     }
@@ -129,5 +142,25 @@ class MainActivity : AppCompatActivity() {
         return arrayOf(windowType, weightingsType, calibrationValues[0], calibrationValues[1],
             calibrationValues[2], calibrationValues[3], calibrationValues[4], calibrationValues[5],
             calibrationValues[6], calibrationValues[7])
+    }
+
+    private fun editCalibrationSettings(data: Intent?) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+        val calibrationValues = data?.getIntArrayExtra(EXTRA_CALIBRATION_VALUES) ?: IntArray(8) { 0 }
+
+        editor.putString("125Hz", calibrationValues[0].toString())
+        editor.putString("250Hz", calibrationValues[1].toString())
+        editor.putString("500Hz", calibrationValues[2].toString())
+        editor.putString("1000Hz", calibrationValues[3].toString())
+        editor.putString("2000Hz", calibrationValues[4].toString())
+        editor.putString("4000Hz", calibrationValues[5].toString())
+        editor.putString("8000Hz", calibrationValues[6].toString())
+        editor.putString("16000Hz", calibrationValues[7].toString())
+
+        editor.apply()
+
+        for ((index, value) in calibrationValues.withIndex())
+            Log.d(TAG, "Calibration value received for ${pow(2, index)*125} Hz: $value")
     }
 }

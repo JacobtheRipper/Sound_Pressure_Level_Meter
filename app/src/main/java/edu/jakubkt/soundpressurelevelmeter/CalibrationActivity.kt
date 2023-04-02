@@ -65,6 +65,9 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_return_to_main_menu_from_calibration_activity -> {
+                //send calibration values back to Settings Activity
+                val resultIntent = intent.putExtra(EXTRA_CALIBRATION_VALUES, octaveBandsCalibrationValues)
+                setResult(RESULT_OK, resultIntent)
                 finish()
                 return true
             }
@@ -72,7 +75,6 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
         return super.onOptionsItemSelected(item)
     }
 
-    //TODO send calibration values back to Settings Activity
     override fun onDestroy() {
         recorder.stopRecording()
         updateUI = false
