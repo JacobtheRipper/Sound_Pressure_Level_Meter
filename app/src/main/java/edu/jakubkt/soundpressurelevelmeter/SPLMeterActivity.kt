@@ -96,7 +96,7 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
     override fun processAudioBuffer(audioBuffer: ShortArray?) {
         if(updateUI) {
             updateUI = false
-            val linstFieldValue = calculation.calculateLinst(windowType, weightingsType, audioBuffer)
+            val linstFieldValue: Double = calculation.calculateLinst(windowType, weightingsType, audioBuffer)
             val leqFieldValue: Double = calculation.calculateLeq()
             val lmaxFieldValue: Double = calculation.calculateLmax()
             val lminFieldValue: Double = calculation.calculateLmin()

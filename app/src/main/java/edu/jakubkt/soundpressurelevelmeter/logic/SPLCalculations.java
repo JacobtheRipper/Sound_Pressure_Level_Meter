@@ -33,6 +33,8 @@ public class SPLCalculations {
     private double lMax;
     private double lMin;
     private double totalSoundIntensity = 0.0d;
+    // TODO Initialise the array in the constructor. Use it during calibration process.
+    //private double[] octaveBandTotalSoundIntensity = null;
     private long numberOfMeasurementsTaken = 0;
 
     public SPLCalculations() {
@@ -105,6 +107,12 @@ public class SPLCalculations {
 
     public double calculateLmin() {
         return lMin;
+    }
+
+    // Use for conducting the smartphone calibration process
+    public double calculateLeqPerOctaveBand(int octaveBandArrayIndex) {
+        // TODO Stub
+        return 0.0;
     }
 
     private void applyWindowFunction(String windowFunction, @NonNull short[] buffer) {
