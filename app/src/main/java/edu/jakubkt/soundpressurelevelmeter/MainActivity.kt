@@ -91,9 +91,17 @@ class MainActivity : AppCompatActivity() {
             val currentSettings = retrieveSettings()
             val windowType = currentSettings[0]
             val weightingsType = currentSettings[1]
+            val calibrationValues = DoubleArray(8) { 0.0 }
+            for (i in 2..9)
+                calibrationValues[i-2] = currentSettings[i].toDouble()
+
+            for ((index, value) in calibrationValues.withIndex())
+                Log.d(TAG, "Calibration value being sent for ${pow(2, index)*125} Hz: $value")
+
             Intent(this, SPLMeterActivity::class.java).also {
                 it.putExtra(EXTRA_WINDOW_TYPE, windowType)
                 it.putExtra(EXTRA_WEIGHTINGS_TYPE, weightingsType)
+                it.putExtra(EXTRA_CALIBRATION_VALUES, calibrationValues)
                 startActivity(it)
             }
         }

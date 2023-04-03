@@ -24,6 +24,7 @@ public class SPLCalculations {
     private final double[] octaveBandAmplitudeBuffer = new double[AUDIO_BUFFER_SIZE/2];
 
     private final int[] octaveBandsCenterFrequencies = {125, 250, 500, 1000, 2000, 4000, 8000, 16000};
+    private final double[] octaveBandsCalibrationValues = {0, 0, 0, 0, 0, 0, 0, 0}; // set values to 0 unless provided with different values
     private final double[] aWeightings = {-16.1, -8.6, -3.2, 0, 1.2, 1.0, -1.1, -6.6};
     private final double[] cWeightings = {-0.2, 0, 0, 0, -0.2, -0.8, -3.0, -8.5};
 
@@ -33,6 +34,20 @@ public class SPLCalculations {
     private double lMin;
     private double totalSoundIntensity = 0.0d;
     private long numberOfMeasurementsTaken = 0;
+
+    public SPLCalculations() {
+        int octaveBandsCalibrationValuesLength = octaveBandsCalibrationValues.length;
+        for (int i = 0; i < octaveBandsCalibrationValuesLength; i++)
+            Log.d(TAG, "Calibration value initialised for " + pow(2, i)*125 + " Hz: " + octaveBandsCalibrationValues[i]);
+    }
+
+    public SPLCalculations(double[] newCalibrationValues) {
+        int octaveBandsCalibrationValuesLength = octaveBandsCalibrationValues.length;
+        System.arraycopy(newCalibrationValues, 0, octaveBandsCalibrationValues, 0, octaveBandsCalibrationValuesLength);
+
+        for (int i = 0; i < octaveBandsCalibrationValuesLength; i++)
+            Log.d(TAG, "Calibration value initialised for " + pow(2, i)*125 + " Hz: " + octaveBandsCalibrationValues[i]);
+    }
 
     public double calculateLinst(String windowFunction, String weightingType, short[] buffer) {
         numberOfMeasurementsTaken++;
@@ -52,7 +67,6 @@ public class SPLCalculations {
 
             outputLinst += pow(10, 0.1*lInstPerOctave);
         }
-        //double weightingValue = applyFrequencyWeightingPerOctaveBand(weightingType, 0); // used for later
         outputLinst = convertEnergyToDB(outputLinst);
 
         /*
@@ -230,7 +244,6 @@ public class SPLCalculations {
     }
 
     private double applyCalibrationCorrectionPerOctaveBand(int octaveBandArrayIndex) {
-        // TODO return an array using an appropriate calibration value based on settings in CalibrationActvity
-        return 0.0;
+        return octaveBandsCalibrationValues[octaveBandArrayIndex];
     }
 }

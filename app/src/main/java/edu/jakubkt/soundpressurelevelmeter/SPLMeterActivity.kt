@@ -3,19 +3,22 @@ package edu.jakubkt.soundpressurelevelmeter
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 
+import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.REQUEST_CODE_MICROPHONE
 import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.EXTRA_WEIGHTINGS_TYPE
 import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.EXTRA_WINDOW_TYPE
-import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.REQUEST_CODE_MICROPHONE
+import edu.jakubkt.soundpressurelevelmeter.MainActivity.AppConstants.EXTRA_CALIBRATION_VALUES
 
 import edu.jakubkt.soundpressurelevelmeter.databinding.ActivitySplmeterBinding
 import edu.jakubkt.soundpressurelevelmeter.logic.AudioBufferProcessing
 import edu.jakubkt.soundpressurelevelmeter.logic.MicrophoneRecorder
 import edu.jakubkt.soundpressurelevelmeter.logic.SPLCalculations
+import org.apache.commons.math3.util.ArithmeticUtils
 
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -41,8 +44,9 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
 
         windowType = intent.getStringExtra(EXTRA_WINDOW_TYPE) ?: "hann"
         weightingsType = intent.getStringExtra(EXTRA_WEIGHTINGS_TYPE) ?: "a"
+        val octaveBandsCalibrationValues = intent.getDoubleArrayExtra(EXTRA_CALIBRATION_VALUES) ?: DoubleArray(8) { 0.0 }
 
-        calculation = SPLCalculations()
+        calculation = SPLCalculations(octaveBandsCalibrationValues)
 
         recorder = MicrophoneRecorder(this, applicationContext, this)
         recorder.startRecording()
