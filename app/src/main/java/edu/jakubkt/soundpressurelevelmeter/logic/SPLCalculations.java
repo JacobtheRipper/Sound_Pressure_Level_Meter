@@ -33,14 +33,12 @@ public class SPLCalculations {
     private double lMax;
     private double lMin;
     private double totalSoundIntensity = 0.0d;
-    // TODO Initialise the array in the constructor. Use it during calibration process.
-    //private double[] octaveBandTotalSoundIntensity = null;
+    private double[] totalSoundIntensityPerOctaveBand = null;
     private long numberOfMeasurementsTaken = 0;
 
     public SPLCalculations() {
-        int octaveBandsCalibrationValuesLength = octaveBandsCalibrationValues.length;
-        for (int i = 0; i < octaveBandsCalibrationValuesLength; i++)
-            Log.d(TAG, "Calibration value initialised for " + pow(2, i)*125 + " Hz: " + octaveBandsCalibrationValues[i]);
+        totalSoundIntensityPerOctaveBand = new double[] {0, 0, 0, 0, 0, 0, 0, 0};
+        Log.d(TAG, "SPLCalculations object initialised for smartphone calibration");
     }
 
     public SPLCalculations(double[] newCalibrationValues) {
@@ -71,16 +69,6 @@ public class SPLCalculations {
         }
         outputLinst = convertEnergyToDB(outputLinst);
 
-        /*
-        // TODO move commented code for later usage
-        // Calculate Linst
-        double outputLinst;
-        applyWindowFunction(windowFunction, buffer);
-        calculateFFTAmplitude(signalBuffer);
-        outputLinst = calculateSignalEnergy(fftAmplitudeBuffer);
-        outputLinst = convertEnergyToDB(outputLinst);
-        */
-
         // Set lMax and lMin values, wait 8 measurements cycles until outputLinst value stabilises
         if (numberOfMeasurementsTaken <= 8) {
             lMax = outputLinst;
@@ -110,9 +98,33 @@ public class SPLCalculations {
     }
 
     // Use for conducting the smartphone calibration process
-    public double calculateLeqPerOctaveBand(int octaveBandArrayIndex) {
-        // TODO Stub
-        return 0.0;
+    // Make sure to call the function for 125 Hz octave first in each measurement iteration
+    // Otherwise, calculations won't work correctly
+    public double calculateLeqPerOctaveBand(int octaveBandArrayIndex, short[] buffer) {
+        double lInstPerOctave, outputLeqPerOctaveBand;
+
+        // Calculate FFT amplitude once in every measurement iteration
+        if (octaveBandArrayIndex == 0) {
+            numberOfMeasurementsTaken++;
+            // For the purpose of calibration process set window to Flat Top
+            applyWindowFunction("flat_top", buffer);
+            calculateFFTAmplitude(signalBuffer);
+        }
+
+        // Calculate SPL per octave band
+        octaveBandFilter(octaveBandsCenterFrequencies[octaveBandArrayIndex], fftAmplitudeBuffer);
+        lInstPerOctave = calculateSignalEnergy(octaveBandAmplitudeBuffer);
+        lInstPerOctave = convertEnergyToDB(lInstPerOctave);
+        // For the purpose of calibration process set frequency weightings to Z-weightings
+        lInstPerOctave += applyFrequencyWeightingPerOctaveBand("z", octaveBandArrayIndex);
+        lInstPerOctave += applyCalibrationCorrectionPerOctaveBand(octaveBandArrayIndex);
+
+        // Increase totalSoundIntensity value for Leq calculation
+        totalSoundIntensityPerOctaveBand[octaveBandArrayIndex] += pow(10, 0.1*lInstPerOctave);
+
+        outputLeqPerOctaveBand = convertEnergyToDB(totalSoundIntensityPerOctaveBand[octaveBandArrayIndex]/numberOfMeasurementsTaken);
+
+        return outputLeqPerOctaveBand;
     }
 
     private void applyWindowFunction(String windowFunction, @NonNull short[] buffer) {

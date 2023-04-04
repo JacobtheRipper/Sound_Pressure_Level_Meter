@@ -97,18 +97,17 @@ class CalibrationActivity : AppCompatActivity(), AudioBufferProcessing {
     }
 
     override fun processAudioBuffer(audioBuffer: ShortArray?) {
-        //TODO For every octave band calculate Leq, then apply calibration correction
         if(updateUI) {
             updateUI = false
 
-            val linstValueOctaveBand125Hz = 50.0
-            val linstValueOctaveBand250Hz = 50.0
-            val linstValueOctaveBand500Hz = 50.0
-            val linstValueOctaveBand1000Hz = 50.0
-            val linstValueOctaveBand2000Hz = 50.0
-            val linstValueOctaveBand4000Hz = 50.0
-            val linstValueOctaveBand8000Hz = 50.0
-            val linstValueOctaveBand16000Hz = 50.0
+            val linstValueOctaveBand125Hz = calculation.calculateLeqPerOctaveBand(0, audioBuffer)
+            val linstValueOctaveBand250Hz = calculation.calculateLeqPerOctaveBand(1, audioBuffer)
+            val linstValueOctaveBand500Hz = calculation.calculateLeqPerOctaveBand(2, audioBuffer)
+            val linstValueOctaveBand1000Hz = calculation.calculateLeqPerOctaveBand(3, audioBuffer)
+            val linstValueOctaveBand2000Hz = calculation.calculateLeqPerOctaveBand(4, audioBuffer)
+            val linstValueOctaveBand4000Hz = calculation.calculateLeqPerOctaveBand(5, audioBuffer)
+            val linstValueOctaveBand8000Hz = calculation.calculateLeqPerOctaveBand(6, audioBuffer)
+            val linstValueOctaveBand16000Hz = calculation.calculateLeqPerOctaveBand(7, audioBuffer)
 
             runOnUiThread {
                 // Rounding floating-point number to 1 decimal place
