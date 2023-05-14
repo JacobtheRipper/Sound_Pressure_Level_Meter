@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     companion object AppConstants {
         // requestCode for permissions
         const val REQUEST_CODE_MICROPHONE: Int = 1
+        const val REQUEST_CODE_EXTERNAL_STORAGE: Int = 2
         const val SAMPLE_RATE: Int = 44100
         // buffer containing 125 milliseconds of audio data
         const val AUDIO_BUFFER_SIZE: Int = 5513

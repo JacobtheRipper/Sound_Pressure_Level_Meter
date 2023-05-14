@@ -1,7 +1,6 @@
 <resources>
-    <!-- Main Application Titles -->
+    <!-- Main Application Title -->
     <string name="app_name">Sound Pressure Level Meter</string>
-    <string name="placeholder_string">Work in progress</string>
 
     <!-- Main Menu Buttons -->
     <string name="button_spl_graph_name">SPL Graph</string>
@@ -86,5 +85,9 @@
     <string name="calibration_4000Hz_title">Correction value 4000 Hz</string>
     <string name="calibration_8000Hz_title">Correction value 8000 Hz</string>
     <string name="calibration_16000Hz_title">Correction value 16000 Hz</string>
+
+    <!-- Miscellaneous -->
+    <string name="placeholder_string">Work in progress</string>
+    <string name="screenshot_captured">Captured screenshot. Go to device\'s gallery to view it</string>
 
 </resources>
