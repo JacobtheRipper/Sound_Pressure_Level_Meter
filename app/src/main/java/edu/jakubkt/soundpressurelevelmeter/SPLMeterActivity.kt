@@ -127,23 +127,23 @@ class SPLMeterActivity : AppCompatActivity(), AudioBufferProcessing {
         // Request user permission to write image files to external storage
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE_EXTERNAL_STORAGE)
+
         // Set date format
         val currentDate = Date()
         android.text.format.DateFormat.format("dd-MM-yyyy_hh:mm:ss", currentDate)
 
         try {
-            val screenShotPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val screenShotPath = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), resources.getString(R.string.app_name))
             screenShotPath.mkdirs()
+
             // Current screen capture
             val activityCurrentView = window.decorView.rootView
             activityCurrentView.isDrawingCacheEnabled = true
             val viewBitmap = Bitmap.createBitmap(activityCurrentView.drawingCache)
             activityCurrentView.isDrawingCacheEnabled = false
 
-            // Save image to file
-            //TODO: Correct the filepath - the *.png extension returns a subfolder
-            val imageFile = File(screenShotPath, "${resources.getString(R.string.app_name)}/$currentDate.png")
-            imageFile.mkdirs()
+            // Save image to a PNG file
+            val imageFile = File.createTempFile("$currentDate", ".png", screenShotPath)
             val fileOutputStream = FileOutputStream(imageFile)
             viewBitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
             fileOutputStream.flush()

@@ -143,25 +143,22 @@ public class SPLCalculations {
         double flatTopA4 = 0.006947368;
 
         switch (windowFunction) {
-            // Hann Window
             case "hann":
-                Log.d(TAG, "Applied Hann Window");
+                //Log.d(TAG, "Applied Hann Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double hannEquation = 0.5 * (1 - cos(2*PI*i / (bufferLength - 1)));
                     windowedSignal[i] = buffer[i] * hannEquation;
                 }
                 break;
-            // Hamming Window
             case "hamming":
-                Log.d(TAG, "Applied Hamming Window");
+                //Log.d(TAG, "Applied Hamming Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double hammingEquation = hammingA0 - hammingA1 * cos(2*PI*i / (bufferLength - 1));
                     windowedSignal[i] = buffer[i] * hammingEquation;
                 }
                 break;
-            // FlatTop Window
             case "flat_top":
-                Log.d(TAG, "Applied FlatTop Window");
+                //Log.d(TAG, "Applied FlatTop Window");
                 for (int i = 0; i < bufferLength; i++) {
                     double cosine1 = flatTopA1 * cos(2*PI*i / (bufferLength - 1));
                     double cosine2 = flatTopA2 * cos(4*PI*i / (bufferLength - 1));
@@ -217,7 +214,6 @@ public class SPLCalculations {
         for (int i = 0; i < bufferLength; i++) {
             totalEnergy += pow(buffer[i], 2);
         }
-        // TODO If the measurement is inaccurate calculate signal's power over observation time
         totalEnergy = totalEnergy/bufferLength;
         return totalEnergy;
     }
@@ -244,15 +240,15 @@ public class SPLCalculations {
         double outputWeightingValue;
         switch (weightingType) {
             case "a":
-                Log.d(TAG, "Applied A-weighting");
+                //Log.d(TAG, "Applied A-weighting");
                 outputWeightingValue = aWeightings[weightingArrayIndex];
                 break;
             case "c":
-                Log.d(TAG, "Applied C-weighting");
+                //Log.d(TAG, "Applied C-weighting");
                 outputWeightingValue = cWeightings[weightingArrayIndex];
                 break;
             case "z":
-                Log.d(TAG, "Applied no weighting");
+                //Log.d(TAG, "Applied no weighting");
                 outputWeightingValue = 0.0;
                 break;
             default:

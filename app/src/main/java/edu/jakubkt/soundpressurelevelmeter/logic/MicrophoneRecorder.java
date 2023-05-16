@@ -19,7 +19,8 @@ import androidx.core.app.ActivityCompat;
 
 public class MicrophoneRecorder implements Runnable {
 
-    private final int AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_RECOGNITION; // used for raw audio, MediaRecorder.AudioSource.UNPROCESSED can also be used if possible
+    // used for raw audio, MediaRecorder.AudioSource.UNPROCESSED can also be used if possible
+    private final int AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_RECOGNITION;
     private final int SAMPLING_RATE = SAMPLE_RATE;
     private final int CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO;
     private final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
@@ -36,7 +37,7 @@ public class MicrophoneRecorder implements Runnable {
 
     public MicrophoneRecorder(Activity activity, Context context, AudioBufferProcessing processing) {
 
-        // Grant user permission to use a microphone
+        // Request user permission to use a microphone
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_MICROPHONE);
         }
@@ -77,11 +78,10 @@ public class MicrophoneRecorder implements Runnable {
     public void run() {
         // buffer containing 125 milliseconds of audio data
         short[] audioBuffer = new short[AUDIO_BUFFER_SIZE];
-        int numberOfSamples;
         try {
             audioRecord.startRecording();
             while (running) {
-                numberOfSamples = audioRecord.read(audioBuffer, 0, audioBuffer.length);
+                audioRecord.read(audioBuffer, 0, audioBuffer.length);
                 audioBufferProcessing.processAudioBuffer(audioBuffer);
             }
         }
