@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 
 import android.media.AudioFormat;
+import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.media.AudioRecord;
 
@@ -19,8 +20,7 @@ import androidx.core.app.ActivityCompat;
 
 public class MicrophoneRecorder implements Runnable {
 
-    // used for raw audio, MediaRecorder.AudioSource.UNPROCESSED can also be used if possible
-    private final int AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_RECOGNITION;
+    private final int AUDIO_SOURCE;
     private final int SAMPLING_RATE = SAMPLE_RATE;
     private final int CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO;
     private final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
@@ -41,6 +41,18 @@ public class MicrophoneRecorder implements Runnable {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_MICROPHONE);
         }
+
+        // Using MediaRecorder.AudioSource.UNPROCESSED for raw audio signal acquisition if possible
+        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        if (audioManager.getProperty(AudioManager.PROPERTY_SUPPORT_AUDIO_SOURCE_UNPROCESSED) != null) {
+            AUDIO_SOURCE = MediaRecorder.AudioSource.UNPROCESSED;
+            Log.d(TAG, "This device supports unprocessed audio source");
+        }
+        else {
+            AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_RECOGNITION;
+            Log.d(TAG, "This device does not support unprocessed audio source. Using voice recognition audio source");
+        }
+
         audioRecord = new AudioRecord(AUDIO_SOURCE, SAMPLING_RATE, CHANNEL_CONFIG, AUDIO_FORMAT, BUFFER_SIZE_RECORDING);
         running = false;
         audioBufferProcessing = processing;
