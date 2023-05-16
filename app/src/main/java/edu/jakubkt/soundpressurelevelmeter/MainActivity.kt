@@ -51,10 +51,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_access_screenshots -> {
-                Toast.makeText(applicationContext, R.string.placeholder_string, Toast.LENGTH_SHORT).show()
-                return true
-            }
             R.id.action_access_settings_activity -> {
                 Intent(this, SettingsActivity::class.java).also {
                     startActivity(it)
