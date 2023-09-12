@@ -45,5 +45,6 @@ Mobile devices, Sound level meter
 
 ## Authors
 Jakub Turliński
+
 **Promoter**: dr inż. Grzegorz Makarewicz
 
