@@ -42,3 +42,8 @@ it allows for an initial estimate of noise level.
 
 ## Keywords
 Mobile devices, Sound level meter
+
+## Authors
+Jakub Turliński
+**Promoter**: dr inż. Grzegorz Makarewicz
+
