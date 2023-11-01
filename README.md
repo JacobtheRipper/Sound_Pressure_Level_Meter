@@ -68,14 +68,31 @@ Tools and libraries:
 
 ## Features
 
-* Measurement of sound pressure level-related parameters via audio signal analysis
+* *Real time measurement* of sound pressure level-related parameters via audio signal analysis
 * The choice of a *window function* applied to the acquired audio signal
 * The choice of a *frequency weighting compliant with IEC 61672-1* applied to the signal
 * *Calibration* of a mobile device via a calibration procedure described in master's thesis
 * *Capturing screenshots* to store measurement results in smartphone’s memory
+* *Audio signal acquistion* which bypasses signal processing introduced by Android system
 
 ## Screenshots
-<!-- TODO -->
+<!-- TODO: change file names in the imagefolder -->
+![Main Menu](./img/Menu glowne.jpg)
+
+![Measurement mode](./img/Tryb pomiarow.png)
+
+![Calibration mode](./img/Tryb kalibracji.jpg)
+
+![Settings Menu](./img/Menu ustawien.jpg)
+
+Real life measurements and calibration in the anechoic chamber of [Electroacoustic Division](https://www.ire.pw.edu.pl/about-the-institute-2/structure/divisions/)
+of **The Institute of Radioelectronics and Multimedia Technology**.
+
+![Anechoic chamber measurement in progress](./img/Stanowisko_pomiarowe.jpg)
+
+Calibration procedure using **Huawei P30 Lite** and **Brüel & Kjær 2238 Mediator** sound level meter.
+
+![Calibration procedure](./img/Procedura_Kalibracji.jpg)
 
 ## Setup
 
