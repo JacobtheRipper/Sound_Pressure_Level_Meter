@@ -62,23 +62,38 @@ Languages:
 * Kotlin 1.6.10
 
 Tools and libraries:
-* Android Studio [here](https://developer.android.com/studio)
+* Android Studio [download here](https://developer.android.com/studio)
 * Android SDK [API Reference](https://developer.android.com/reference)
 * JTransforms library by Piotr Wendykier [GitHub repository](https://github.com/wendykierp/JTransforms)
 
 ## Features
 
-1. Measurement of sound pressure level-related parameters via audio signal analysis:
-2. The choice of a *window function* applied to the acquired audio signal
-3. The choice of a *frequency weighting compliant with IEC 61672-1* applied to the signal
-4. *Calibration* of a mobile device via a calibration procedure described in master's thesis
-5. *Capturing screenshots* to store measurement results in smartphone’s memory
+* Measurement of sound pressure level-related parameters via audio signal analysis
+* The choice of a *window function* applied to the acquired audio signal
+* The choice of a *frequency weighting compliant with IEC 61672-1* applied to the signal
+* *Calibration* of a mobile device via a calibration procedure described in master's thesis
+* *Capturing screenshots* to store measurement results in smartphone’s memory
 
 ## Screenshots
 <!-- TODO -->
 
 ## Setup
-<!-- TODO -->
+
+* Download this repository or clone using `git clone https://github.com/JacobtheRipper/Sound_Pressure_Level_Meter.git`
+* Move to the project directory `cd SoundPressureLevelMeter`
+* Open the project using Android Studio
+* Build and run application as described [here](https://developer.android.com/studio/run)
+
+**NOTE:**
+The application has been tested on the following Android Operating Systems:
+* Android 8
+* Android 9
+* Android 10
+* Android 11
+* Android 12
+
+Which according to [Android API Levels website](https://apilevels.com/)
+corresponds to **target SDK levels from 26 to 32**
 
 ## Keywords
 *Mobile devices*, *Sound level meter*
