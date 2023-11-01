@@ -76,23 +76,20 @@ Tools and libraries:
 * *Audio signal acquistion* which bypasses signal processing introduced by Android system
 
 ## Screenshots
-<!-- TODO: change file names in the imagefolder -->
-![Main Menu](./img/Menu glowne.jpg)
 
-![Measurement mode](./img/Tryb pomiarow.png)
-
-![Calibration mode](./img/Tryb kalibracji.jpg)
-
-![Settings Menu](./img/Menu ustawien.jpg)
+<img src="./img/measurement_mode.png" alt="Measurement mode" width="576" align="middle">
+<img src="./img/calibration_mode.jpg" alt="Calibration mode" width="576" align="middle">
+<img src="./img/main_menu.jpg" alt="Main Menu" width="192" align="left">
+<img src="./img/settings_menu.jpg" alt="Settings Menu" width="192" align="middle">
 
 Real life measurements and calibration in the anechoic chamber of [Electroacoustic Division](https://www.ire.pw.edu.pl/about-the-institute-2/structure/divisions/)
 of **The Institute of Radioelectronics and Multimedia Technology**.
 
-![Anechoic chamber measurement in progress](./img/Stanowisko_pomiarowe.jpg)
+<img src="./img/measurement_station.jpg" alt="Anechoic chamber measurement in progress" width="576" align="middle">
 
 Calibration procedure using **Huawei P30 Lite** and **Brüel & Kjær 2238 Mediator** sound level meter.
 
-![Calibration procedure](./img/Procedura_Kalibracji.jpg)
+<img src="./img/calibration_procedure.jpg" alt="Calibration procedure" width="384" align="middle">
 
 ## Setup
 
